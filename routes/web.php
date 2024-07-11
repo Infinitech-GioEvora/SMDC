@@ -42,3 +42,10 @@ Route::get('/submit-property', function () {
 });
 
 
+
+Route::get('/admin/inquiries', function () {
+    return view('Admin.Inquiries');
+});
+
+
+

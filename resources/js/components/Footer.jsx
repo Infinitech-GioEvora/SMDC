@@ -17,10 +17,10 @@ function Footer() {
 
                         <div className="social-media">
                             <ul>
-                                <li><i class="fa-brands fa-facebook-f fa-lg"></i></li>
-                                <li><i class="fa-brands fa-square-instagram fa-lg"></i></li>
-                                <li><i class="fa-solid fa-envelope fa-lg"></i></li>
-                                <li><i class="fa-solid fa-phone fa-lg"></i></li>
+                                <li><i className="fa-brands fa-facebook-f fa-lg"></i></li>
+                                <li><i className="fa-brands fa-square-instagram fa-lg"></i></li>
+                                <li><i className="fa-solid fa-envelope fa-lg"></i></li>
+                                <li><i className="fa-solid fa-phone fa-lg"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -28,13 +28,13 @@ function Footer() {
                         <h1 className="heading footer-heading">Quick Links</h1>
                         <div className="quick-links">
                             <ul>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> Home</a></li>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> About Us</a></li>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> For Sale</a></li>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> For Lease</a></li>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> Submit Property</a></li>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> Contact Us</a></li>
-                                <li><i class="fa-solid fa-play "></i> <a href="#"> Loan Calculator</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> Home</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> About Us</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> For Sale</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> For Lease</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> Submit Property</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> Contact Us</a></li>
+                                <li><i className="fa-solid fa-play "></i> <a href="#"> Loan Calculator</a></li>
                             </ul>
                         </div>
                     </div>
@@ -42,10 +42,10 @@ function Footer() {
                         <h1 className="heading footer-heading inquiries">For inquiries</h1>
                         <div className="quick-call">
                             <ul>
-                                <li><i class="fa-solid fa-phone fa-lg"></i> +63 905 277 7784 </li>
-                                <li><i class="fa-brands fa-whatsapp fa-lg"></i> +63 905 277 7784</li>
-                                <li><i class="fa-brands fa-viber fa-lg"></i> +63 905 277 7784</li>
-                                <li><i class="fa-solid fa-envelope fa-lg"></i> info@mysmdc.ph</li>
+                                <li><i className="fa-solid fa-phone fa-lg"></i> +63 905 277 7784 </li>
+                                <li><i className="fa-brands fa-whatsapp fa-lg"></i> +63 905 277 7784</li>
+                                <li><i className="fa-brands fa-viber fa-lg"></i> +63 905 277 7784</li>
+                                <li><i className="fa-solid fa-envelope fa-lg"></i> info@mysmdc.ph</li>
                             </ul>
                         </div>
                     </div>

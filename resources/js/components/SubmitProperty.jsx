@@ -2,28 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 function SubmitProperty() {
-    var display = ""
-    const tab1 = useRef();
-    useEffect(() => {
-        const computed = window
-            .getComputedStyle(tab1.current)
-            .getPropertyValue("display");
-
-        if (computed == 'block') {
-            document.getElementById('prevBtn').style.display = 'none'
-            
-        }
-    }, []);
-
-
-
-    const nextTab = () => {
-
+    const prevTab = () => {
+        console.log('prev')
     }
 
-    
-
-
+    const nextTab = () => {
+        console.log('next')
+    }
 
     return (
 
@@ -31,7 +16,7 @@ function SubmitProperty() {
             <div className="submitProperty">
                 <div className="col-md-12 col-panel">
                     <div className="submitHeading">
-                        <div ref={tab1} className="tab-1">
+                        <div className='tab' id="tab-1">
 
                             <h1 className='heading'>Personal Information</h1>
                             <hr />
@@ -71,7 +56,7 @@ function SubmitProperty() {
                             </div>
                         </div>
 
-                        <div className="tab-2">
+                        <div className='tab' id="tab-2">
                             <h1 className='heading'>Personal Information</h1>
                             <hr />
 
@@ -85,10 +70,9 @@ function SubmitProperty() {
                         </div>
 
                         <div className="form-button">
-                            <button id='prevBtn' className='btn btn-form-prev me-2'>Previous</button>
+                            <button id='prevBtn' className='btn btn-form-prev me-2' onClick={prevTab}>Previous</button>
                             <button id='nextBtn' className='btn btn-form-next me-2' onClick={nextTab}>Next</button>
                         </div>
-
 
                     </div>
                 </div>

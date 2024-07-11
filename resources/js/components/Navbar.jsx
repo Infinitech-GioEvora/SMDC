@@ -7,7 +7,7 @@ function Call() {
     }
 
     return (
-        <button className='btn btn-call' onClick={handleCall}><i class="fa-solid fa-phone"></i> Call Us Now</button>
+        <button className='btn btn-call' onClick={handleCall}><i className="fa-solid fa-phone"></i> Call Us Now</button>
     );
 }
 
