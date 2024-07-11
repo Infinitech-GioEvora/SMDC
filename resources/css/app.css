@@ -545,7 +545,7 @@ p {
     justify-content: flex-end;
 }
 
-.btn-form-next, .btn-form-prev{
+.btn-form-next, .btn-form-prev, .btn-form-submit{
     padding: 8px;
     width: 200px;
     font-weight: 500;
