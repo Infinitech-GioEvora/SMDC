@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\AwardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,15 @@ Route::get('/loan-calculator', function () {
 
 Route::get('/submit-property', function () {
     return view('Homepage/SubmitProperty');
+});
+
+Route::prefix('admin/awards')->group(function () {
+    Route::get('/', [AwardController::class, 'index']);
+    Route::post('/', [AwardController::class, 'all']);
+    Route::post('/add', [AwardController::class, 'add']);
+    Route::get('/edit/{id}', [AwardController::class, 'edit']);
+    Route::post('/upd', [AwardController::class, 'upd']);
+    Route::get('/del/{id}', [AwardController::class, 'del']);
 });
 
 
