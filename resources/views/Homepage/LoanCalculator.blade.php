@@ -6,62 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Calculator | SMDC Condominium | SMDC Condo</title>
 
-    <meta name="title" content="Explore High-Quality Real Estate with SMDC">
-    <meta name="description" content="Discover SMDC, a leading real estate developer in the Philippines. We offer affordable &amp; luxurious residential condos. Learn more.">
-    <meta name="keywords" content="real estate, residential properties, commercial properties, properties for sale, ready for occupancy">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <link rel="canonical" href="https://www.smdc.com">
-
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Explore High-Quality Real Estate with SMDC">
-    <meta property="og:description" content="Discover SM Development Corporation's range of high-quality real estate projects. From residential to commercial properties, find the perfect space for you.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.smdc.com">
-    <meta property="og:image" content="https://www.smdc.com/og-image.jpg">
-    <link rel="icon" href="https://mysmdc.ph/wp-content/uploads/2023/05/smdc-favicon-300x300.jpg" type="image/x-icon">
-    <link rel="shortcut icon" href="https://mysmdc.ph/wp-content/uploads/2023/05/smdc-favicon-300x300.jpg" type="image/x-icon">
-    <meta property="og:site_name" content="SMDC">
-    <meta property="article:publisher" content="https://www.facebook.com/mysmdcph">
-    <meta name="twitter:card" content="summary_large_image">
-
-    @vite('resources/css/app.css')
+    @include('Layout/Header')
 
 </head>
 
 
 <body>
 
-    <nav>
-        <div id="nav"></div>
-    </nav>
+    <!-- Navigation Bar -->
+    @include('Layout/Navigation')
 
     <main>
-
         <section class="hero" style="position: relative;">
             <img src="../img/Bloom-Residences.jpg" alt="">
 
             <div class="loan-form">
                 <div class="container">
-                   <div id="loan"></div>
+                    <div class="loanForm">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 mb-6">
+                                    <div class="form-group">
+                                        <label htmlFor="">Enter Amount</label>
+                                        <input type="text" placeholder='00.00' class='form-control' value="" id="loanAmount" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label htmlFor="">Select Interest</label>
+                                        <select class='form-control' value="" id="loanInterest">
+                                            <option value="0">0%</option>
+                                            <option value="6">6%</option>
+                                            <option value="7">7%</option>
+                                            <option value="8">8%</option>
+                                            <option value="9">9%</option>
+                                            <option value="10">10%</option>
+                                            <option value="11">11%</option>
+                                            <option value="12">12%</option>
+                                            <option value="13">13%</option>
+                                            <option value="14">14%</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class='btn btn-calculate ' onClick="calculateLoan()">Calculate</button>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Years</th>
+                                                <th scope="col">Monthly Payment</th>
+                                                <th scope="col">Total Payment</th>
+                                                <th scope="col">Total Interest</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="loan-details" >
+                                            <!-- Dynamic rows will be added here -->
+                                        </tbody>
+                                    </table>
+
+                                    <p> <strong>DISCLAIMER: </strong>Please note that computation is based on diminishing balance. Indicative interest rate is still subject to company approval based on prevailing market rate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-    
+
+
+
 
     </main>
 
-    <footer style="margin-top: 20%;">
-        <div id="footer"></div>
-    </footer>
 
+    <!-- Footer -->
+    @include('Layout/Footer')
 
-
-
-    @viteReactRefresh
-    @vite('resources/js/app.js')
+    <!-- Script -->
+    @include('Layout/script')
 </body>
 
 </html>

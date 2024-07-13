@@ -6,36 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Sale | SMDC Condominium | SMDC Condo</title>
 
-    <meta name="title" content="Explore High-Quality Real Estate with SMDC">
-    <meta name="description" content="Discover SMDC, a leading real estate developer in the Philippines. We offer affordable &amp; luxurious residential condos. Learn more.">
-    <meta name="keywords" content="real estate, residential properties, commercial properties, properties for sale, ready for occupancy">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <link rel="canonical" href="https://www.smdc.com">
-
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Explore High-Quality Real Estate with SMDC">
-    <meta property="og:description" content="Discover SM Development Corporation's range of high-quality real estate projects. From residential to commercial properties, find the perfect space for you.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.smdc.com">
-    <meta property="og:image" content="https://www.smdc.com/og-image.jpg">
-    <link rel="icon" href="https://mysmdc.ph/wp-content/uploads/2023/05/smdc-favicon-300x300.jpg" type="image/x-icon">
-    <link rel="shortcut icon" href="https://mysmdc.ph/wp-content/uploads/2023/05/smdc-favicon-300x300.jpg" type="image/x-icon">
-    <meta property="og:site_name" content="SMDC">
-    <meta property="article:publisher" content="https://www.facebook.com/mysmdcph">
-    <meta name="twitter:card" content="summary_large_image">
-
-    @vite('resources/css/app.css')
+    @include('Layout/Header')
 
 </head>
 
 
 <body>
 
-    <nav>
-        <div id="nav"></div>
-    </nav>
+    <!-- Navigation Bar -->
+    @include('Layout/Navigation')
 
     <main>
 
@@ -46,13 +25,110 @@
             </div>
         </section>
 
-        <section class="featured-properties mb-4">
+        <section class="featured-properties">
             <div class="container">
-
                 <div class="card-properties" id="featured">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card featured-card">
+                                <div class="img-hover-zoom">
+                                    <img src="../img/South-2-Residences-Pool-Amenity-2.jpg" alt="South-2-Residences-Pool-Amenity-2" />
+                                </div>
+
+                                <div class="properties-status">
+                                    <span class="badge badge-primary">Pre-selling</span>
+                                </div>
+
+                                <div class="properties-price">
+                                    <h5>CONDOMINIUM</h5>
+                                    <span>Php 21,000.00+ / month</span>
+                                </div>
+
+                                <div class="card-body">
+                                    <h1 class="heading mb-0">South 2 Residences</h1>
+                                    <small class="location">Las Piñas City beside SM Southmall</small>
+                                    <p class='excerpt'>Discover the epitome of Southern living at South 2 Residences by SMDC. Situated in Alabang-Zapote Road, Brgy. Almanza Uno, Las Pinas City, this exceptional residential development offers modern living spaces and a range of amenities designed to enhance your lifestyle. South 2 Residences is the perfect place to embrace the warmth and charm of Southern living.</p>
+                                    <button class='btn-learn'>More Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card featured-card">
+                                <div class="img-hover-zoom">
+                                    <img src="../img/South-2-Residences-Pool-Amenity-2.jpg" alt="South-2-Residences-Pool-Amenity-2" />
+                                </div>
+
+                                <div class="properties-status">
+                                    <span class="badge badge-primary">Pre-selling</span>
+                                </div>
+
+                                <div class="properties-price">
+                                    <h5>CONDOMINIUM</h5>
+                                    <span>Php 21,000.00+ / month</span>
+                                </div>
+
+                                <div class="card-body">
+                                    <h1 class="heading mb-0">Light 2 Residences</h1>
+                                    <small class="location">EDSA-Boni MRT Station</small>
+                                    <p class='excerpt'>Illuminate your life at Light 2 Residences by SMDC. Located at EDSA corner Madison St., Mandaluyong City, this exceptional residential development offers modern living spaces and a vibrant lifestyle. Light 2 Residences is the perfect place to thrive, offering a dynamic and energetic atmosphere for residents to flourish. Discover more about this remarkable property by clicking the link and embark on a journey towards a bright and fulfilling future at Light 2 Residences.</p>
+                                    <button class='btn-learn'>More Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card featured-card">
+                                <div class="img-hover-zoom">
+                                    <img src="../img/South-2-Residences-Pool-Amenity-2.jpg" alt="South-2-Residences-Pool-Amenity-2" />
+                                </div>
+
+                                <div class="properties-status">
+                                    <span class="badge badge-primary">Pre-selling</span>
+                                </div>
+
+                                <div class="properties-price">
+                                    <h5>CONDOMINIUM</h5>
+                                    <span>Php 21,000.00+ / month</span>
+                                </div>
+
+                                <div class="card-body">
+                                    <h1 class="heading mb-0">Field Residences</h1>
+                                    <small class="location">beside SM Sucat, Sucat, Paranaque City</small>
+                                    <p class='excerpt'>Found along Dr. A Santos Avenue, Field Residences’ spot in Sucat, Parañaque puts it right next to the entertainment and shopping centers of Entertainment City and SM City Sucat as well as the international and domestic terminals of NAIA. Field Residences offers five star sub urban living south of the metro. From young to growing families, Field Residences offers a wide array of living options suited for your needs and lifestyles. Relax and bond with your loved ones at the development’s host of excellent amenities. For convenience, SM Sucat is right in front of your home and international and local airports are right nearby. Dining and shopping options abound as the Entertainment City is a short drive away. Designed for utmost relaxation and convenience in mind, Field Residences’ strategic location, wide open spaces and generously sized amenities offers families spaces to thrive and grow.</p>
+                                    <button class='btn-learn'>More Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card featured-card">
+                                <div class="img-hover-zoom">
+                                    <img src="../img/South-2-Residences-Pool-Amenity-2.jpg" alt="South-2-Residences-Pool-Amenity-2" />
+                                </div>
+
+                                <div class="properties-status">
+                                    <span class="badge badge-primary">Pre-selling</span>
+                                </div>
+
+                                <div class="properties-price">
+                                    <h5>CONDOMINIUM</h5>
+                                    <span>Php 21,000.00+ / month</span>
+                                </div>
+
+                                <div class="card-body">
+                                    <h1 class="heading mb-0">Lush Residences</h1>
+                                    <small class="location">Makati City</small>
+                                    <p class="excerpt">Lush Residences is an iconic landmark located north of the Makati Central Business District. A development that seamlessly blends elements of nature throughout the property.</p>
+                                    <button class="btn-learn">More Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
 
     </main>
 
@@ -60,11 +136,14 @@
         <div id="footer"></div>
     </footer>
 
-   
 
 
-    @viteReactRefresh
-    @vite('resources/js/app.js')
+
+    <!-- Footer -->
+    @include('Layout/Footer')
+
+    <!-- Script -->
+    @include('Layout/script')
 </body>
 
 </html>
