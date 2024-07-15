@@ -43,6 +43,8 @@ Route::get('/submit-property', function () {
     return view('Homepage/SubmitProperty');
 });
 
+
+
 Route::prefix('admin/awards')->group(function () {
     Route::get('/', [AwardController::class, 'index']);
     Route::post('/', [AwardController::class, 'all']);
