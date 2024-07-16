@@ -7,6 +7,29 @@ $(document).ready(function () {
 
     all();
 
+    $("select[name=cat]").val('')
+
+    $("select[name=cat]").on("change", function() {
+        var type = "select[name=type]"
+        $(type).empty()
+
+        var sale = ["Pre-selling", "RFO"]
+        var lease = ["Residential", "Commercial"]
+        
+        if ($(this).val() == 'For Sale') {
+            for (var opt of sale) {
+                var option = $('<option>').text(opt)
+                $(type).append(option)
+            }
+        }
+        else if ($(this).val() == 'For Lease') {
+            for (var opt of lease) {
+                var option = $('<option>').text(opt)
+                $(type).append(option)
+            }
+        }
+    })
+
     $(".add_modal").on("show.bs.modal", function (e) {
         $(".add_form span").remove();
     })
@@ -118,11 +141,23 @@ $(document).ready(function () {
 
                 var keys = [
                     "name",
+                    "cat",
                     "type",
+                    "price",
+                    "locat",
+                    "map",
+                    "lice",
+                    "desc"
                 ];
 
                 for (key of keys) {
-                    $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
+                    if (key == "type") {
+                        $('select[name=cat]').trigger("change");
+                        $(`select[name=${key}]`).val(record[key])
+                    }
+                    else {
+                        $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);
+                    }
                 }
             },
         })
@@ -133,6 +168,12 @@ $(document).ready(function () {
 
         $(".del_form input[name=id]").val(id);
         $(`.del_modal`).modal("show");
+    });
+
+    $(document).on("click", ".amens_btn", function () {
+        var id = $(this).closest('tr').data('id')
+        sessionStorage.setItem("property_id", id)
+        window.location.href = "/admin/amenities"
     });
 })
 
@@ -152,7 +193,7 @@ function all() {
             var thead = $("<thead>");
             var thr = $("<tr>");
 
-            var cols = ["Name", "Image", "Type", "Action"];
+            var cols = ["Name", "Category", "Type", "Price", "Location", "Action", "Map", "License", "Description"];
             for (col of cols) {
                 thr.append($("<th>").text(col))
             }
@@ -161,13 +202,14 @@ function all() {
             tbl.append(thead);
 
             var tbody = $("<tbody>");
-            var action =    
+            var action = 
                             `
                                 <div class="d-inline-block text-nowrap">                
                                     <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end m-0">
+                                        <a href="javascript:;" class="dropdown-item amens_btn">Amenities</a>
                                         <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
                                         <a href="javascript:;" class="dropdown-item del_btn">Delete</a>
                                     </div>
@@ -176,29 +218,20 @@ function all() {
 
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, record.img, record.type, action];
+                    var vals = [record.name, record.cat, record.type, record.price, record.locat, action, record.map, record.lice, record.desc];
 
                     var tr = $("<tr>").data("id", record.id)
                     for (val of vals) {
                         switch (vals.indexOf(val)) {
-                            case 1:
-                                tr.append(
-                                    `
-                                        <td>
-                                            <img src='/uploads/Awards/${record.img}'></img>
-                                        </td>
-                                    `
-                                )
-                                break
-                            case 3: 
+                            case 5: 
                                 tr.append($("<td>").html(action))
                                 break
-                            default:
+                            default: 
                                 tr.append($("<td>").addClass('text-truncate').html(val));
                                 break
                         }
+                        tbody.append(tr);
                     }
-                    tbody.append(tr);
                 }
             } 
 

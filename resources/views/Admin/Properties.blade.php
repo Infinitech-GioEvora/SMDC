@@ -1,15 +1,15 @@
 @extends('Layout.Admin.Layout')
 
-@section('title', 'Inquiries')
+@section('title', 'Properties')
 
 @section('content')
-    @php $ent = 'Inquiry' @endphp
+    @php $ent = 'Property' @endphp
     <!-- Data table -->
 
     <div class="card">
         <div class="row pt-4 px-4 py-4">
             <div class="col-md-6">
-                <h4 class="ent">Inquiries</h4>
+                <h4 class="ent">Properties</h4>
             </div>
 
             <div class="col-md-6">
@@ -41,7 +41,7 @@
 
     <!-- Add Modal -->
     <div class="modal fade add_modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add {{ $ent }}</h5>
@@ -54,21 +54,48 @@
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
-                        </div>
-                        <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="" class="form-label">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
+                                <label for="" class="form-label">Category</label>
+                                <select class="form-select" name="cat">
+                                    <option>For Sale</option>
+                                    <option>For Lease</option>
+                                </select>
                             </div>
                             <div class="col mb-3">
-                                <label for="" class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
+                                <label for="" class="form-label">Type</label>
+                                <select class="form-select" name="type">
+
+                                </select>
                             </div>
                         </div>
-                        <div class="row g-2">
+                        <div class="row">
+                            <div class="col-8 mb-3">
+                                <label for="" class="form-label">Price</label>
+                                <input type="text" class="form-control" placeholder="Enter Pricing Details" name="price"/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">License</label>
+                                <input type="text" class="form-control" placeholder="Enter License" name="lice"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <div class="col mb-3">
+                                    <label for="" class="form-label">Location</label>
+                                    <input type="text" class="form-control" placeholder="Enter Location Details" name="locat"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Google Map Link</label>
+                                <input type="text" class="form-control" placeholder="Enter Google Map Link" name="map"/>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
-                                <label for="" class="form-label">Message</label>
-                                <textarea class="form-control" cols="30" rows="7" placeholder="Enter Message" name="msg"></textarea>
+                                <label for="" class="form-label">Description</label>
+                                <textarea class="form-control" cols="30" rows="7" placeholder="Enter Description" name="desc"></textarea>
                             </div>
                         </div>
                 </div>
@@ -83,7 +110,7 @@
 
     <!-- Update Modal -->
     <div class="modal fade upd_modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit {{ $ent }}</h5>
@@ -98,21 +125,48 @@
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
-                        </div>
-                        <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="" class="form-label">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
+                                <label for="" class="form-label">Category</label>
+                                <select class="form-select" name="cat">
+                                    <option>For Sale</option>
+                                    <option>For Lease</option>
+                                </select>
                             </div>
                             <div class="col mb-3">
-                                <label for="" class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
+                                <label for="" class="form-label">Type</label>
+                                <select class="form-select" name="type">
+
+                                </select>
                             </div>
                         </div>
-                        <div class="row g-2">
+                        <div class="row">
+                            <div class="col-8 mb-3">
+                                <label for="" class="form-label">Price</label>
+                                <input type="text" class="form-control" placeholder="Enter Pricing Details" name="price"/>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">License</label>
+                                <input type="text" class="form-control" placeholder="Enter License" name="lice"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <div class="col mb-3">
+                                    <label for="" class="form-label">Location</label>
+                                    <input type="text" class="form-control" placeholder="Enter Location Details" name="locat"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Google Map Link</label>
+                                <input type="text" class="form-control" placeholder="Enter Google Map Link" name="map"/>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
-                                <label for="" class="form-label">Message</label>
-                                <textarea class="form-control" cols="30" rows="7" placeholder="Enter Message" name="msg"></textarea>
+                                <label for="" class="form-label">Description</label>
+                                <textarea class="form-control" cols="30" rows="7" placeholder="Enter Description" name="desc"></textarea>
                             </div>
                         </div>
                 </div>
@@ -153,5 +207,5 @@
 @section('scripts')
     @parent
 
-    <script src="{{ asset('js/Admin/Inquiries.js') }}"></script>
+    <script src="{{ asset('js/Admin/Properties.js') }}"></script>
 @endsection

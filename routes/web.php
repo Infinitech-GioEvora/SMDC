@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AwardController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\SettingController;
 
 /*
@@ -31,6 +33,10 @@ Route::get('/for-sale', function () {
 
 Route::get('/for-lease', function () {
     return view('Homepage/ForLease');
+});
+
+Route::get('/property', function () {
+    return view('Homepage/SingleProperties');
 });
 
 Route::get('/contact-us', function () {
@@ -63,6 +69,24 @@ Route::prefix('admin/inquiries')->group(function () {
     Route::get('/edit/{id}', [InquiryController::class, 'edit']);
     Route::post('/upd', [InquiryController::class, 'upd']);
     Route::get('/del/{id}', [InquiryController::class, 'del']);
+});
+
+Route::prefix('admin/properties')->group(function () {
+    Route::get('/', [PropertyController::class, 'index']);
+    Route::post('/', [PropertyController::class, 'all']);
+    Route::post('/add', [PropertyController::class, 'add']);
+    Route::get('/edit/{id}', [PropertyController::class, 'edit']);
+    Route::post('/upd', [PropertyController::class, 'upd']);
+    Route::get('/del/{id}', [PropertyController::class, 'del']);
+});
+
+Route::prefix('admin/amenities')->group(function () {
+    Route::get('/', [AmenityController::class, 'index']);
+    Route::post('/', [AmenityController::class, 'all']);
+    Route::post('/add', [AmenityController::class, 'add']);
+    Route::get('/edit/{id}', [AmenityController::class, 'edit']);
+    Route::post('/upd', [AmenityController::class, 'upd']);
+    Route::get('/del/{id}', [AmenityController::class, 'del']);
 });
 
 Route::prefix('admin/settings')->group(function () {

@@ -1,15 +1,15 @@
 @extends('Layout.Admin.Layout')
 
-@section('title', 'Inquiries')
+@section('title', 'Amenities')
 
 @section('content')
-    @php $ent = 'Inquiry' @endphp
+    @php $ent = 'Amenity' @endphp
     <!-- Data table -->
 
     <div class="card">
         <div class="row pt-4 px-4 py-4">
             <div class="col-md-6">
-                <h4 class="ent">Inquiries</h4>
+                <h4 class="ent">Amenities</h4>
             </div>
 
             <div class="col-md-6">
@@ -41,7 +41,7 @@
 
     <!-- Add Modal -->
     <div class="modal fade add_modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add {{ $ent }}</h5>
@@ -49,32 +49,19 @@
                 </div>
                 <div class="modal-body">
                     <form class="add_form">
+                        <input type="hidden" name="property_id" class="form-control">
+
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <div class="col mb-3">
-                                <label for="" class="form-label">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="" class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
-                            </div>
-                        </div>
-                        <div class="row g-2">
-                            <div class="col">
-                                <label for="" class="form-label">Message</label>
-                                <textarea class="form-control" cols="30" rows="7" placeholder="Enter Message" name="msg"></textarea>
-                            </div>
-                        </div>
                 </div>
                 <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+
                     </form>
                 </div>
             </div>
@@ -97,22 +84,6 @@
                             <div class="col mb-3">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
-                            </div>
-                        </div>
-                        <div class="row g-2">
-                            <div class="col mb-3">
-                                <label for="" class="form-label">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="" class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
-                            </div>
-                        </div>
-                        <div class="row g-2">
-                            <div class="col">
-                                <label for="" class="form-label">Message</label>
-                                <textarea class="form-control" cols="30" rows="7" placeholder="Enter Message" name="msg"></textarea>
                             </div>
                         </div>
                 </div>
@@ -153,5 +124,5 @@
 @section('scripts')
     @parent
 
-    <script src="{{ asset('js/Admin/Inquiries.js') }}"></script>
+    <script src="{{ asset('js/Admin/Amenities.js') }}"></script>
 @endsection

@@ -7,6 +7,8 @@ $(document).ready(function () {
 
     all();
 
+    $("input[name=property_id]").val(fk)
+
     $(".add_modal").on("show.bs.modal", function (e) {
         $(".add_form span").remove();
     })
@@ -28,6 +30,7 @@ $(document).ready(function () {
                 $(`.add_modal`).modal("hide");
             },
             error: function (res) {
+                console.log(res)
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".add_form input, .add_form select, .add_form textarea")
@@ -118,7 +121,6 @@ $(document).ready(function () {
 
                 var keys = [
                     "name",
-                    "type",
                 ];
 
                 for (key of keys) {
@@ -137,6 +139,7 @@ $(document).ready(function () {
 })
 
 var ent = $(".ent").text().toLowerCase();
+var fk = sessionStorage.getItem("property_id")
 
 function all() {
     $(".tbl_div").empty();
@@ -144,6 +147,7 @@ function all() {
     $.ajax({
         type: "POST",
         url: `/admin/${ent}`,
+        data: {fk: fk},
         success: function (res) {
             var records = res.records;
 
@@ -152,7 +156,7 @@ function all() {
             var thead = $("<thead>");
             var thr = $("<tr>");
 
-            var cols = ["Name", "Image", "Type", "Action"];
+            var cols = ["Name", "Action"];
             for (col of cols) {
                 thr.append($("<th>").text(col))
             }
@@ -176,21 +180,12 @@ function all() {
 
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, record.img, record.type, action];
+                    var vals = [record.name, action];
 
                     var tr = $("<tr>").data("id", record.id)
                     for (val of vals) {
                         switch (vals.indexOf(val)) {
-                            case 1:
-                                tr.append(
-                                    `
-                                        <td>
-                                            <img src='/uploads/Awards/${record.img}'></img>
-                                        </td>
-                                    `
-                                )
-                                break
-                            case 3: 
+                            case 1: 
                                 tr.append($("<td>").html(action))
                                 break
                             default:

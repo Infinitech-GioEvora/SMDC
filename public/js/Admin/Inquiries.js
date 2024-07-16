@@ -163,29 +163,34 @@ function all() {
             tbl.append(thead);
 
             var tbody = $("<tbody>");
+            var action = 
+                            `
+                                <div class="d-inline-block text-nowrap">                
+                                    <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end m-0">
+                                        <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
+                                        <a href="javascript:;" class="dropdown-item del_btn">Delete</a>
+                                    </div>
+                                </div>
+                            `
+
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, record.phone, record.email, record.msg];
-
+                    var vals = [record.name, record.phone, record.email, record.msg, action];
+                    
                     var tr = $("<tr>").data("id", record.id)
                     for (val of vals) {
-                        tr.append($("<td>")
-                        .addClass('text-truncate')
-                        .html(val));
+                        switch (vals.indexOf(val)) {
+                            case 4:
+                                tr.append($("<td>").html(action))
+                                break
+                            default:
+                                tr.append($("<td>").addClass('text-truncate').html(val));
+                                break
+                        }
                     }
-
-                    tr.append($("<td>").html(
-                    `
-                        <div class="d-inline-block text-nowrap">                
-                            <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end m-0">
-                                <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
-                                <a href="javascript:;" class="dropdown-item del_btn">Delete</a>
-                            </div>
-                        </div>
-                    `))
                     tbody.append(tr);
                 }
             } 

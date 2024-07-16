@@ -1,5 +1,5 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-    <div class="app-brand demo">
+    <div class="app-brand demo d-flex justify-content-center">
         <a href="/admin" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <img src="https://mysmdc.ph/wp-content/uploads/2023/05/smdc-favicon-300x300.jpg" alt="" style="width: 130px;">
@@ -18,6 +18,12 @@
             <a href="/admin" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('/admin/properties') ? 'active' : '' }}">
+            <a href="/admin/properties" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-building-house"></i>
+                <div data-i18n="Properties">Properties</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('/admin/awards') ? 'active' : '' }}">
