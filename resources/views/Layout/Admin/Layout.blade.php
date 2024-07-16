@@ -28,8 +28,14 @@
         <link rel="stylesheet" href="../assets/Admin/vendor/libs/apex-charts/apex-charts.css" />
         <link rel="stylesheet" href="../assets/Admin/vendor/libs/DataTables/datatables.min.css" />
 
-        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
-        {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css"/> --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+            td img {
+                width: 13rem;
+            }
+        </style>
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
     @show
 </head>
@@ -39,13 +45,13 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            @include('Sections.Admin.Sidebar')
+            @include('Layout.Admin.Sidebar')
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                @include('Sections.Admin.Navbar')
+                @include('Layout.Admin.Navbar')
 
                 <!-- / Navbar -->
 
@@ -65,7 +71,7 @@
                 <!-- / Content -->
 
                 <!-- Footer -->
-                @include('Sections.Admin.Footer')
+                @include('Layout.Admin.Footer')
                 <!-- / Footer -->
 
                 <div class="content-backdrop fade"></div>
@@ -83,9 +89,22 @@
         <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
         <script src="../assets/Admin/js/config.js"></script>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-        {{-- <script src="https://kit.fontawesome.com/dc08c6c264.js" crossorigin="anonymous"></script> --}}
-        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> --}}
-        {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="../assets/Admin/vendor/libs/jquery/jquery.js"></script>
+        <script src="../assets/Admin/vendor/libs/popper/popper.js"></script>
+        <script src="../assets/Admin/vendor/js/bootstrap.js"></script>
+        <script src="../assets/Admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+        <!-- Data Tables -->
+        <script src="../assets/Admin/vendor/libs/DataTables/datatables.min.js"></script>
+
+        <script src="../assets/Admin/vendor/js/menu.js"></script>
+        <!-- endbuild -->
+
+        <!-- Main JS -->
+        <script src="../assets/Admin/js/main.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @show
 </body>

@@ -118,11 +118,13 @@ $(document).ready(function () {
 
                 var keys = [
                     "name",
-                    "type",
+                    "phone",
+                    "email",
+                    "msg",
                 ];
 
                 for (key of keys) {
-                    $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
+                    $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);
                 }
             },
         })
@@ -152,7 +154,7 @@ function all() {
             var thead = $("<thead>");
             var thr = $("<tr>");
 
-            var cols = ["Name", "Image", "Type", "Action"];
+            var cols = ["Name", "Phone", "Email", "Message", "Action"];
             for (col of cols) {
                 thr.append($("<th>").text(col))
             }
@@ -163,26 +165,13 @@ function all() {
             var tbody = $("<tbody>");
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, record.img, record.type];
+                    var vals = [record.name, record.phone, record.email, record.msg];
 
                     var tr = $("<tr>").data("id", record.id)
                     for (val of vals) {
-                        switch (vals.indexOf(val)) {
-                            case 1:
-                                tr.append(
-                                    `
-                                        <td>
-                                            <img src='/uploads/Awards/${record.img}'></img>
-                                        </td>
-                                    `
-                                )
-                                break
-                            default:
-                                tr.append($("<td>")
-                                .addClass('text-truncate')
-                                .html(val));
-                                break
-                        }
+                        tr.append($("<td>")
+                        .addClass('text-truncate')
+                        .html(val));
                     }
 
                     tr.append($("<td>").html(

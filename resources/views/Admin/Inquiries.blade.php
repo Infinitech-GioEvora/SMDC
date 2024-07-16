@@ -1,15 +1,15 @@
 @extends('Layout.Admin.Layout')
 
-@section('title', 'Awards')
+@section('title', 'Inquiries')
 
 @section('content')
-    @php $ent = 'Award' @endphp
+    @php $ent = 'Inquiry' @endphp
     <!-- Data table -->
 
     <div class="card">
         <div class="row pt-4 px-4 py-4">
             <div class="col-md-6">
-                <h4 class="ent">{{ $ent }}s</h4>
+                <h4 class="ent">Inquiries</h4>
             </div>
 
             <div class="col-md-6">
@@ -56,24 +56,23 @@
                             </div>
                         </div>
                         <div class="row g-2">
-                            <div class="col mb-0">
-                                <label for="" class="form-label">Image</label>
-                                <input type="file" class="form-control" placeholder="" name="img"/>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Phone</label>
+                                <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
                             </div>
-                            <div class="col mb-0">
-                                <label for="" class="form-label">Type</label>
-                                <select class="form-select" name="type">
-                                    <option>Best Developer in the Philippines</option>
-                                    <option>International Awards</option>
-                                    <option>Philippine Awards</option>
-                                </select>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
                             </div>
+                        </div>
+                        <div class="row g-2">
+                            <label for="" class="form-label">Message</label>
+                            <textarea class="form-control" cols="30" rows="7" placeholder="Enter Message" name="msg"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-
                     </form>
                 </div>
             </div>
@@ -91,6 +90,7 @@
                 <div class="modal-body">
                     <form class="upd_form">
                         <input type="hidden" name="id" class="form-control">
+
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="" class="form-label">Name</label>
@@ -98,18 +98,18 @@
                             </div>
                         </div>
                         <div class="row g-2">
-                            <div class="col mb-0">
-                                <label for="" class="form-label">Image</label>
-                                <input type="file" class="form-control" placeholder="" name="img"/>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Phone</label>
+                                <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
                             </div>
-                            <div class="col mb-0">
-                                <label for="" class="form-label">Type</label>
-                                <select class="form-select" name="type">
-                                    <option>Best Developer in the Philippines</option>
-                                    <option>International Awards</option>
-                                    <option>Philippine Awards</option>
-                                </select>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
                             </div>
+                        </div>
+                        <div class="row g-2">
+                            <label for="" class="form-label">Message</label>
+                            <textarea class="form-control" cols="30" rows="7" name="msg"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -149,5 +149,5 @@
 @section('scripts')
     @parent
 
-    <script src="{{ asset('js/Admin/Awards.js') }}"></script>
+    <script src="{{ asset('js/Admin/Inquiries.js') }}"></script>
 @endsection

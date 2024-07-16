@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AwardController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,5 +56,18 @@ Route::prefix('admin/awards')->group(function () {
     Route::get('/del/{id}', [AwardController::class, 'del']);
 });
 
+Route::prefix('admin/inquiries')->group(function () {
+    Route::get('/', [InquiryController::class, 'index']);
+    Route::post('/', [InquiryController::class, 'all']);
+    Route::post('/add', [InquiryController::class, 'add']);
+    Route::get('/edit/{id}', [InquiryController::class, 'edit']);
+    Route::post('/upd', [InquiryController::class, 'upd']);
+    Route::get('/del/{id}', [InquiryController::class, 'del']);
+});
 
+Route::prefix('admin/settings')->group(function () {
+    Route::get('/', [SettingController::class, 'index']);
+    Route::get('/edit', [SettingController::class, 'edit']);
+    Route::post('/upd', [SettingController::class, 'upd']);
+});
 
