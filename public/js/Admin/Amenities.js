@@ -118,10 +118,7 @@ $(document).ready(function () {
             url: `/admin/${ent}/edit/${id}`,
             success: function (res) {
                 var record = res.record;
-
-                var keys = [
-                    "name",
-                ];
+                var keys = ["name"];
 
                 for (key of keys) {
                     $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
@@ -139,7 +136,7 @@ $(document).ready(function () {
 })
 
 var ent = $(".ent").text().toLowerCase();
-var fk = sessionStorage.getItem("property_id")
+var fk = sessionStorage.getItem("amens_fk")
 
 function all() {
     $(".tbl_div").empty();
@@ -180,17 +177,15 @@ function all() {
 
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, action];
-
+                    var keys = ["name", "action"]
                     var tr = $("<tr>").data("id", record.id)
-                    for (val of vals) {
-                        switch (vals.indexOf(val)) {
-                            case 1: 
-                                tr.append($("<td>").html(action))
-                                break
-                            default:
-                                tr.append($("<td>").addClass('text-truncate').html(val));
-                                break
+
+                    for (key of keys) {
+                        if (key == "action") {
+                            tr.append($("<td>").html(action))
+                        }
+                        else {
+                            tr.append($("<td>").addClass('text-truncate').html(record[key]));
                         }
                     }
                     tbody.append(tr);

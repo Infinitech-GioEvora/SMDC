@@ -37,20 +37,26 @@ class SettingController extends Controller
             'disc' => 'required',
         ]);
 
-        $record = Model::first();
-        $keys = ['desc', 'fb', 'insta', 'email', 'phone', 'viber', 'whatsapp', 'disc'];
+        $count = Model::all()->count();
+        $count == 0 ? $record = new Model() : $record = Model::first();
+        
+        $keys = ['logo', 'desc', 'fb', 'insta', 'email', 'phone', 'viber', 'whatsapp', 'disc'];
         foreach ($keys as $key) {
-            $upd[$key] = $request->$key;
+            if ($key == "logo") {
+                if($request->hasFile($key)) {
+                    $file = $request->$key;
+                    $filename = mt_rand() . '.'.$file->clientExtension();
+                    $file->move('uploads/Logos', $filename );
+                    $count == 0 ? $record->$key = $filename : $upd[$key] = $filename;
+                }
+            }
+            else {
+                $count == 0 ? $record->$key = $request->$key : $upd[$key] = $request->$key;
+            }
         }
 
-        if($request->hasFile('logo')) {
-            $file = $request->logo;
-            $filename = mt_rand() . '.'.$file->clientExtension();
-            $file->move('uploads/Logos', $filename );
-            $upd['logo'] = $filename;
-        }
-        $record->update($upd);
-
+        $count == 0 ? $record->save() : $record->update($upd);
+        
         return response(['msg' => "Saved $this->ent"]);
     }
 }

@@ -38,6 +38,7 @@ class PropertyController extends Controller
         ]);
 
         $record = new Model();
+
         $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc'];
         foreach ($keys as $key) {
             $record->$key = $request->$key;
@@ -71,6 +72,7 @@ class PropertyController extends Controller
         ]);
 
         $record = Model::find($request->id);
+
         $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc'];
         foreach ($keys as $key) {
             $upd[$key] = $request->$key;
@@ -84,9 +86,5 @@ class PropertyController extends Controller
     public function del($id) {
         $record = Model::find($id)->delete();
         return response(['msg' => "Deleted $this->ent"]);
-    }
-
-    public function set(Request $request, $id) {
-        $request->session()->put('property_id', $id);
     }
 }

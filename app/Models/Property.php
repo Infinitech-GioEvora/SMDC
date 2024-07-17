@@ -28,6 +28,21 @@ class Property extends Model
         return $this->hasMany(Amenity::class);
     }
 
+    public function features(): HasMany
+    {
+        return $this->hasMany(Feature::class);
+    }
+
+    public function pictures(): HasMany
+    {
+        return $this->hasMany(Picture::class);
+    }
+
+    public function videos(): HasMany
+    {
+        return $this->hasMany(Video::class);
+    }
+
     public function appointment(): BelongsTo
     {
         return $this->belongsTo(Property::class);

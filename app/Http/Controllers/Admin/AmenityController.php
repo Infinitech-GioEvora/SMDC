@@ -33,6 +33,7 @@ class AmenityController extends Controller
         ]);
 
         $record = new Model();
+
         $keys = ['name', 'property_id'];
         foreach ($keys as $key) {
             $record->$key = $request->$key;
@@ -59,6 +60,7 @@ class AmenityController extends Controller
         ]);
 
         $record = Model::find($request->id);
+
         $keys = ['name'];
         foreach ($keys as $key) {
             $upd[$key] = $request->$key;

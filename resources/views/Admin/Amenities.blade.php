@@ -52,7 +52,7 @@
                         <input type="hidden" name="property_id" class="form-control">
 
                         <div class="row">
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
@@ -70,7 +70,7 @@
 
     <!-- Update Modal -->
     <div class="modal fade upd_modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit {{ $ent }}</h5>
@@ -81,7 +81,7 @@
                         <input type="hidden" name="id" class="form-control">
 
                         <div class="row">
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>

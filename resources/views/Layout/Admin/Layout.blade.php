@@ -34,6 +34,10 @@
             td img {
                 width: 13rem;
             }
+
+            td video {
+                width: 17rem;
+            }
         </style>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -23,7 +23,7 @@ $(document).ready(function () {
                 get();
             },
             error: function (res) {
-                // console.log(res);
+                console.log(res);
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".upd_form input, .upd_form select, .upd_form textarea");
@@ -54,20 +54,17 @@ function get() {
         url: `/admin/${ent}/edit`,
         success: function (res) {
             var record = res.record;
+            if (record) {
+                var keys = ["logo", "desc", "fb", "insta", "email", "phone", "viber", "whatsapp", "disc"];
 
-            var keys = [
-                "desc",
-                "fb",
-                "insta",
-                "email",
-                "phone",
-                "viber",
-                "whatsapp",
-                "disc",
-            ];
+                for (key of keys) {
+                    if (key == "logo") {
 
-            for (key of keys) {
-                $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);
+                    }
+                    else {
+                        $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);
+                    }
+                }
             }
         },
     })

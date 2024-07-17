@@ -339,12 +339,12 @@ p {
     display: flex;
     justify-content: start;
     padding: 0;
-
 }
 
 .social-media ul li {
     text-decoration: none;
     margin-right: 8px;
+    cursor: pointer;
 }
 
 .social-media ul li i {
@@ -366,7 +366,10 @@ p {
 .quick-links ul,
 .quick-call ul {
     list-style: none;
+}
 
+.quick-call ul li {
+    cursor: pointer;
 }
 
 .quick-links ul li a {

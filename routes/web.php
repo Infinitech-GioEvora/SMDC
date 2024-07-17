@@ -2,10 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\User\PageController;
+
 use App\Http\Controllers\Admin\AwardController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\AmenityController;
+use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\PictureController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\SettingController;
 
 /*
@@ -19,37 +24,18 @@ use App\Http\Controllers\Admin\SettingController;
 |
 */
 
-Route::get('/', function () {
-    return view('Homepage/index');
-});
+Route::get('/', [PageController::class, 'index']);
+Route::get('/about-us', [PageController::class, 'about_us']);
+Route::get('/for-sale', [PageController::class, 'for_sale']);
+Route::get('/for-lease', [PageController::class, 'for_lease']);
+Route::get('/property', [PageController::class, 'property']);
+Route::get('/contact-us', [PageController::class, 'contact_us']);
+Route::get('/loan-calculator', [PageController::class, 'loan_calculator']);
+Route::get('/submit-property', [PageController::class, 'submit_property']);
 
-Route::get('/about-us', function () {
-    return view('Homepage/AboutUs');
-});
 
-Route::get('/for-sale', function () {
-    return view('Homepage/ForSale');
-});
 
-Route::get('/for-lease', function () {
-    return view('Homepage/ForLease');
-});
-
-Route::get('/property', function () {
-    return view('Homepage/SingleProperties');
-});
-
-Route::get('/contact-us', function () {
-    return view('Homepage/ContactUs');
-});
-
-Route::get('/loan-calculator', function () {
-    return view('Homepage/LoanCalculator');
-});
-
-Route::get('/submit-property', function () {
-    return view('Homepage/SubmitProperty');
-});
+Route::get('/settings', [PageController::class, 'settings']);
 
 
 
@@ -88,6 +74,34 @@ Route::prefix('admin/amenities')->group(function () {
     Route::post('/upd', [AmenityController::class, 'upd']);
     Route::get('/del/{id}', [AmenityController::class, 'del']);
 });
+
+Route::prefix('admin/features')->group(function () {
+    Route::get('/', [FeatureController::class, 'index']);
+    Route::post('/', [FeatureController::class, 'all']);
+    Route::post('/add', [FeatureController::class, 'add']);
+    Route::get('/edit/{id}', [FeatureController::class, 'edit']);
+    Route::post('/upd', [FeatureController::class, 'upd']);
+    Route::get('/del/{id}', [FeatureController::class, 'del']);
+});
+
+Route::prefix('admin/pictures')->group(function () {
+    Route::get('/', [PictureController::class, 'index']);
+    Route::post('/', [PictureController::class, 'all']);
+    Route::post('/add', [PictureController::class, 'add']);
+    Route::get('/edit/{id}', [PictureController::class, 'edit']);
+    Route::post('/upd', [PictureController::class, 'upd']);
+    Route::get('/del/{id}', [PictureController::class, 'del']);
+});
+
+Route::prefix('admin/videos')->group(function () {
+    Route::get('/', [VideoController::class, 'index']);
+    Route::post('/', [VideoController::class, 'all']);
+    Route::post('/add', [VideoController::class, 'add']);
+    Route::get('/edit/{id}', [VideoController::class, 'edit']);
+    Route::post('/upd', [VideoController::class, 'upd']);
+    Route::get('/del/{id}', [VideoController::class, 'del']);
+});
+
 
 Route::prefix('admin/settings')->group(function () {
     Route::get('/', [SettingController::class, 'index']);

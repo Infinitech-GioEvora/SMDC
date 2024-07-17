@@ -115,13 +115,7 @@ $(document).ready(function () {
             url: `/admin/${ent}/edit/${id}`,
             success: function (res) {
                 var record = res.record;
-
-                var keys = [
-                    "name",
-                    "phone",
-                    "email",
-                    "msg",
-                ];
+                var keys = ["name", "phone", "email", "msg",];
 
                 for (key of keys) {
                     $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);
@@ -178,17 +172,15 @@ function all() {
 
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, record.phone, record.email, record.msg, action];
-                    
+                    var keys = ["name", "phone", "email", "msg", "action"]
                     var tr = $("<tr>").data("id", record.id)
-                    for (val of vals) {
-                        switch (vals.indexOf(val)) {
-                            case 4:
-                                tr.append($("<td>").html(action))
-                                break
-                            default:
-                                tr.append($("<td>").addClass('text-truncate').html(val));
-                                break
+
+                    for (key of keys) {
+                        if (key == "action") {
+                            tr.append($("<td>").html(action))
+                        }
+                        else {
+                            tr.append($("<td>").addClass('text-truncate').html(record[key]));
                         }
                     }
                     tbody.append(tr);

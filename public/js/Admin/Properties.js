@@ -138,17 +138,7 @@ $(document).ready(function () {
             url: `/admin/${ent}/edit/${id}`,
             success: function (res) {
                 var record = res.record;
-
-                var keys = [
-                    "name",
-                    "cat",
-                    "type",
-                    "price",
-                    "locat",
-                    "map",
-                    "lice",
-                    "desc"
-                ];
+                var keys = ["name", "cat", "type", "price", "locat", "map", "lice", "desc"];
 
                 for (key of keys) {
                     if (key == "type") {
@@ -172,8 +162,26 @@ $(document).ready(function () {
 
     $(document).on("click", ".amens_btn", function () {
         var id = $(this).closest('tr').data('id')
-        sessionStorage.setItem("property_id", id)
+        sessionStorage.setItem("amens_fk", id)
         window.location.href = "/admin/amenities"
+    });
+
+    $(document).on("click", ".feats_btn", function () {
+        var id = $(this).closest('tr').data('id')
+        sessionStorage.setItem("feats_fk", id)
+        window.location.href = "/admin/features"
+    });
+
+    $(document).on("click", ".pics_btn", function () {
+        var id = $(this).closest('tr').data('id')
+        sessionStorage.setItem("pics_fk", id)
+        window.location.href = "/admin/pictures"
+    });
+
+    $(document).on("click", ".vids_btn", function () {
+        var id = $(this).closest('tr').data('id')
+        sessionStorage.setItem("vids_fk", id)
+        window.location.href = "/admin/videos"
     });
 })
 
@@ -209,29 +217,30 @@ function all() {
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end m-0">
-                                        <a href="javascript:;" class="dropdown-item amens_btn">Amenities</a>
                                         <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
-                                        <a href="javascript:;" class="dropdown-item del_btn">Delete</a>
+                                        <a href="javascript:;" class="dropdown-item border-bottom border-2 del_btn">Delete</a>
+                                        <a href="javascript:;" class="dropdown-item amens_btn">View Amenities</a>
+                                        <a href="javascript:;" class="dropdown-item feats_btn">View Features</a>
+                                        <a href="javascript:;" class="dropdown-item pics_btn">View Pictures</a>
+                                        <a href="javascript:;" class="dropdown-item vids_btn">View Videos</a>
                                     </div>
                                 </div>
                             `
 
             if (records.length > 0) {
                 for (record of records) {
-                    var vals = [record.name, record.cat, record.type, record.price, record.locat, action, record.map, record.lice, record.desc];
-
+                    var keys = ["name", "cat", "type", "price", "locat", "action", "map", "lice", "desc"]
                     var tr = $("<tr>").data("id", record.id)
-                    for (val of vals) {
-                        switch (vals.indexOf(val)) {
-                            case 5: 
-                                tr.append($("<td>").html(action))
-                                break
-                            default: 
-                                tr.append($("<td>").addClass('text-truncate').html(val));
-                                break
+
+                    for (key of keys) {
+                        if (key == "action") {
+                            tr.append($("<td>").html(action))
                         }
-                        tbody.append(tr);
+                        else {
+                            tr.append($("<td>").addClass('text-truncate').html(record[key]));
+                        }
                     }
+                    tbody.append(tr);
                 }
             } 
 
