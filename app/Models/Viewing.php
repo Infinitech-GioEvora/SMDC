@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Appointment extends Model
+class Viewing extends Model
 {
     use HasFactory;
 

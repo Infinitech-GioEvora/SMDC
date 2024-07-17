@@ -41,6 +41,8 @@ class PageController extends Controller
         return view('User/SubmitProperty');
     }
 
+    
+
     public function settings() {
         $record = Setting::first();
 

@@ -43,8 +43,8 @@ class Property extends Model
         return $this->hasMany(Video::class);
     }
 
-    public function appointment(): BelongsTo
+    public function viewing(): BelongsTo
     {
-        return $this->belongsTo(Property::class);
+        return $this->belongsTo(Viewing::class);
     }
 }
