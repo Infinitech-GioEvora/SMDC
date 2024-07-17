@@ -38,6 +38,12 @@
                 <div data-i18n="Inquiries">Inquiries</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->is('/admin/viewings') ? 'active' : '' }}">
+            <a href="/admin/viewings" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-calendar"></i>
+                <div data-i18n="Viewings">Viewings</div>
+            </a>
+        </li>
         <li class="menu-item {{ request()->is('/admin/settings') ? 'active' : '' }}">
             <a href="/admin/settings" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>

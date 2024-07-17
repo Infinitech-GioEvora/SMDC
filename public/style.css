@@ -475,8 +475,6 @@ p {
     background-color: #002337;
     color: #fff;
     padding: 32px;
-
-
 }
 
 .contact-number ul {
@@ -488,6 +486,7 @@ p {
     padding: 8px;
     margin: 0;
     line-height: 1.80;
+    cursor: pointer;
 }
 
 .contact-number a {

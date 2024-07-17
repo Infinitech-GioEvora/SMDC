@@ -18,28 +18,26 @@
 
                                     <div class="contact-number">
                                         <ul>
-                                            <li><a href="tel:+639052777784"><i class="fa-solid fa-phone fa-lg me-2"></i> +63 905 277 7784</a></li>
-                                            <li><a href="tel:+639052777784"><i class="fa-brands fa-whatsapp fa-lg me-2 "></i> +63 905 277 7784</a></li>
-                                            <li><a href="tel:+639052777784"><i class="fa-brands fa-viber fa-lg me-2 "></i> +63 905 277 7784</a></li>
-                                            <li><a href="tel:+639052777784"><i class="fa-solid fa-envelope fa-lg me-2 "></i> info@mysmdc.ph</a></li>
+                                            <li class="phone"><a><i class="fa-solid fa-phone fa-lg me-2"></i> +63 905 277 7784</a></li>
+                                            <li class="whatsapp"><a><i class="fa-brands fa-whatsapp fa-lg me-2 "></i> +63 905 277 7784</a></li>
+                                            <li class="viber"><a><i class="fa-brands fa-viber fa-lg me-2 "></i> +63 905 277 7784</a></li>
+                                            <li class="email"><a><i class="fa-solid fa-envelope fa-lg me-2 "></i> info@mysmdc.ph</a></li>
 
                                         </ul>
                                     </div>
 
                                     <div class="social-media mb-4">
                                         <ul>
-                                            <li><i class="fa-brands fa-facebook-f fa-lg"></i></li>
-                                            <li><i class="fa-brands fa-square-instagram fa-lg"></i></li>
-
+                                            <li class="fb"><i class="fa-brands fa-facebook-f fa-lg"></i></li>
+                                            <li class="insta"><i class="fa-brands fa-square-instagram fa-lg"></i></li>
                                         </ul>
                                     </div>
 
                                     <div class="contact-number">
                                         <h1 class="heading mb-4">For Billing & Concerns</h1>
                                         <ul>
-                                            <li><a href="tel:+639052777784"><i class="fa-solid fa-phone fa-lg me-2"></i> (02) 8858-0300</a></li>
-                                            <li><a href="tel:+639175005151"><i class="fa-brands fa-whatsapp fa-lg me-2 "></i> 0917-500-5151</a></li>
-
+                                            <li class="phone"><a><i class="fa-solid fa-phone fa-lg me-2"></i> (02) 8858-0300</a></li>
+                                            <li class="whatsapp"><a><i class="fa-brands fa-whatsapp fa-lg me-2 "></i> 0917-500-5151</a></li>
                                         </ul>
                                     </div>
                                 </div>

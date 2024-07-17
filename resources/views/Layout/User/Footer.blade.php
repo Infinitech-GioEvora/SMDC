@@ -37,7 +37,7 @@
                     <h1 class="heading footer-heading inquiries">For inquiries</h1>
                     <div class="quick-call">
                         <ul>
-                            <li class="phone"><i class="fa-solid fa-phone fa-lg"></i> +63 905 277 7784 </li>
+                            <li class="phone"><i class="fa-solid fa-phone fa-lg"></i> +63 905 277 7784</li>
                             <li class="whatsapp"><i class="fa-brands fa-whatsapp fa-lg"></i> +63 905 277 7784</li>
                             <li class="viber"><i class="fa-brands fa-viber fa-lg"></i> +63 905 277 7784</li>
                             <li class="email"><i class="fa-solid fa-envelope fa-lg"></i> info@mysmdc.ph</li>
@@ -49,8 +49,6 @@
                     <p class="footer-desc mt-3 disc">To promote SMDC Projects and increase Sales and Marketing of SMDC Condominiums, all information stated are intended to give a general overview of the project only and does not constitute any part of an offer or contract. www.smdc.com is the official website of SMDC.</p>
                 </div>
             </div>
-
-
         </div>
     </div>
 </footer>
