@@ -98,6 +98,8 @@
                                 <textarea class="form-control" cols="30" rows="7" placeholder="Enter Description" name="desc"></textarea>
                             </div>
                         </div>
+
+                        <input type="hidden" name="status" value="Unpublished">
                 </div>
                 <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -169,6 +171,8 @@
                                 <textarea class="form-control" cols="30" rows="7" placeholder="Enter Description" name="desc"></textarea>
                             </div>
                         </div>
+
+                        <input type="hidden" name="status" value="Unpublished">
                 </div>
                 <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Update</button>

@@ -31,11 +31,11 @@ $(document).ready(function () {
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".add_form input, .add_form select, .add_form textarea")
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`)
                             error_msg.insertAfter($(input));
                         }
@@ -70,11 +70,11 @@ $(document).ready(function () {
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".upd_form input, .upd_form select, .upd_form textarea");
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`);
                             error_msg.insertAfter($(input));
                         }
@@ -105,7 +105,9 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".edit_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
         $(".upd_form input[name=id]").val(id);
         $(`.upd_modal`).modal("show");
@@ -117,7 +119,7 @@ $(document).ready(function () {
                 var record = res.record;
                 var keys = ["name", "phone", "email", "msg",];
 
-                for (key of keys) {
+                for (var key of keys) {
                     $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);
                 }
             },
@@ -125,7 +127,9 @@ $(document).ready(function () {
     })
 
     $(document).on("click", ".del_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
         $(".del_form input[name=id]").val(id);
         $(`.del_modal`).modal("show");
@@ -149,7 +153,7 @@ function all() {
             var thr = $("<tr>");
 
             var cols = ["Name", "Phone", "Email", "Message", "Action"];
-            for (col of cols) {
+            for (var col of cols) {
                 thr.append($("<th>").text(col))
             }
 
@@ -171,17 +175,19 @@ function all() {
                             `
 
             if (records.length > 0) {
-                for (record of records) {
+                for (var record of records) {
                     var keys = ["name", "phone", "email", "msg", "action"]
                     var tr = $("<tr>").data("id", record.id)
 
-                    for (key of keys) {
+                    for (var key of keys) {
+                        var html = ""
                         if (key == "action") {
-                            tr.append($("<td>").html(action))
+                            html = action
                         }
                         else {
-                            tr.append($("<td>").addClass('text-truncate').html(record[key]));
+                            html = record[key]
                         }
+                        tr.append($("<td>").addClass('text-truncate').html(html))
                     }
                     tbody.append(tr);
                 }
@@ -192,6 +198,9 @@ function all() {
 
             var data_table = $('.records_tbl').DataTable({
                 responsive: true,
+                columnDefs: [
+                    {responsivePriority: 1, targets: -1},
+                ],
                 inlineEditing: true,
                 buttons: [
                     'print', 'copy', 'csv', 'pdf'

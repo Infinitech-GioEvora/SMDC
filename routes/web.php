@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\PageController;
 
-use App\Http\Controllers\Admin\AwardController;
-use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PictureController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\AwardController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\ViewingController;
+use App\Http\Controllers\Admin\RegistrationController;
 use App\Http\Controllers\Admin\SettingController;
 
 /*
@@ -33,29 +35,9 @@ Route::get('/contact-us', [PageController::class, 'contact_us']);
 Route::get('/loan-calculator', [PageController::class, 'loan_calculator']);
 Route::get('/submit-property', [PageController::class, 'submit_property']);
 
-
-
 Route::get('/settings', [PageController::class, 'settings']);
 
 
-
-Route::prefix('admin/awards')->group(function () {
-    Route::get('/', [AwardController::class, 'index']);
-    Route::post('/', [AwardController::class, 'all']);
-    Route::post('/add', [AwardController::class, 'add']);
-    Route::get('/edit/{id}', [AwardController::class, 'edit']);
-    Route::post('/upd', [AwardController::class, 'upd']);
-    Route::get('/del/{id}', [AwardController::class, 'del']);
-});
-
-Route::prefix('admin/inquiries')->group(function () {
-    Route::get('/', [InquiryController::class, 'index']);
-    Route::post('/', [InquiryController::class, 'all']);
-    Route::post('/add', [InquiryController::class, 'add']);
-    Route::get('/edit/{id}', [InquiryController::class, 'edit']);
-    Route::post('/upd', [InquiryController::class, 'upd']);
-    Route::get('/del/{id}', [InquiryController::class, 'del']);
-});
 
 Route::prefix('admin/properties')->group(function () {
     Route::get('/', [PropertyController::class, 'index']);
@@ -64,6 +46,8 @@ Route::prefix('admin/properties')->group(function () {
     Route::get('/edit/{id}', [PropertyController::class, 'edit']);
     Route::post('/upd', [PropertyController::class, 'upd']);
     Route::get('/del/{id}', [PropertyController::class, 'del']);
+
+    Route::get('/change/{id}/{status}', [PropertyController::class, 'change_status']);
 });
 
 Route::prefix('admin/amenities')->group(function () {
@@ -102,6 +86,47 @@ Route::prefix('admin/videos')->group(function () {
     Route::get('/del/{id}', [VideoController::class, 'del']);
 });
 
+Route::prefix('admin/awards')->group(function () {
+    Route::get('/', [AwardController::class, 'index']);
+    Route::post('/', [AwardController::class, 'all']);
+    Route::post('/add', [AwardController::class, 'add']);
+    Route::get('/edit/{id}', [AwardController::class, 'edit']);
+    Route::post('/upd', [AwardController::class, 'upd']);
+    Route::get('/del/{id}', [AwardController::class, 'del']);
+});
+
+Route::prefix('admin/inquiries')->group(function () {
+    Route::get('/', [InquiryController::class, 'index']);
+    Route::post('/', [InquiryController::class, 'all']);
+    Route::post('/add', [InquiryController::class, 'add']);
+    Route::get('/edit/{id}', [InquiryController::class, 'edit']);
+    Route::post('/upd', [InquiryController::class, 'upd']);
+    Route::get('/del/{id}', [InquiryController::class, 'del']);
+});
+
+Route::prefix('admin/viewings')->group(function () {
+    Route::get('/', [ViewingController::class, 'index']);
+    Route::post('/', [ViewingController::class, 'all']);
+    Route::post('/add', [ViewingController::class, 'add']);
+    Route::get('/edit/{id}', [ViewingController::class, 'edit']);
+    Route::post('/upd', [ViewingController::class, 'upd']);
+    Route::get('/del/{id}', [ViewingController::class, 'del']);
+
+    Route::get('/get-related', [ViewingController::class, 'get_related']);
+    Route::get('/change/{id}/{status}', [ViewingController::class, 'change_status']);
+});
+
+Route::prefix('admin/registrations')->group(function () {
+    Route::get('/', [RegistrationController::class, 'index']);
+    Route::post('/', [RegistrationController::class, 'all']);
+    Route::post('/add', [RegistrationController::class, 'add']);
+    Route::get('/edit/{id}', [RegistrationController::class, 'edit']);
+    Route::post('/upd', [RegistrationController::class, 'upd']);
+    Route::get('/del/{id}', [RegistrationController::class, 'del']);
+
+    Route::get('/get-related', [RegistrationController::class, 'get_related']);
+    Route::get('/change/{id}/{status}', [RegistrationController::class, 'change_status']);
+});
 
 Route::prefix('admin/settings')->group(function () {
     Route::get('/', [SettingController::class, 'index']);

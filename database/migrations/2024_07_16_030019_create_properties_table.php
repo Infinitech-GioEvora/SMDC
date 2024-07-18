@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('map');
             $table->string('lice');
             $table->text('desc');
+            $table->string('status');
             $table->timestamps();
         });
     }

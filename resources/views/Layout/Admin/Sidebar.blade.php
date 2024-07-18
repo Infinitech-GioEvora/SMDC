@@ -16,8 +16,8 @@
         <!-- Dashboard -->
         <li class="menu-item {{ request()->is('/admin') ? 'active' : '' }}">
             <a href="/admin" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <i class="menu-icon tf-icons bx bx-bar-chart"></i>
+                <div data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('/admin/properties') ? 'active' : '' }}">
@@ -42,6 +42,12 @@
             <a href="/admin/viewings" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
                 <div data-i18n="Viewings">Viewings</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('/admin/registrations') ? 'active' : '' }}">
+            <a href="/admin/registrations" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-notepad"></i>
+                <div data-i18n="Registrations">Submitted Properties</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('/admin/settings') ? 'active' : '' }}">

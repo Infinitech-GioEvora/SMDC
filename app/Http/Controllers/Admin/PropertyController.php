@@ -27,19 +27,20 @@ class PropertyController extends Controller
 
     public function add(Request $request) {
         $request->validate([
-            'name'=> 'required',
-            'cat'=> 'required',
-            'type'=> 'required',
-            'price'=> 'required',
-            'locat'=> 'required',
-            'map'=> 'required',
-            'lice'=> 'required',
-            'desc'=> 'required',
+            'name' => 'required',
+            'cat' => 'required',
+            'type' => 'required',
+            'price' => 'required',
+            'locat' => 'required',
+            'map' => 'required',
+            'lice' => 'required',
+            'desc' => 'required',
+            'status' => 'required',
         ]);
 
         $record = new Model();
 
-        $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc'];
+        $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc', 'status'];
         foreach ($keys as $key) {
             $record->$key = $request->$key;
         }
@@ -69,11 +70,12 @@ class PropertyController extends Controller
             'map'=> 'required',
             'lice'=> 'required',
             'desc'=> 'required',
+            'status' => 'required',
         ]);
 
         $record = Model::find($request->id);
 
-        $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc'];
+        $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc', 'status'];
         foreach ($keys as $key) {
             $upd[$key] = $request->$key;
         }
@@ -86,5 +88,13 @@ class PropertyController extends Controller
     public function del($id) {
         $record = Model::find($id)->delete();
         return response(['msg' => "Deleted $this->ent"]);
+    }
+
+    public function change_status($id, $status) {
+        $record = Model::find($id);
+        $status .= "ed";
+        $record->update(['status' => $status]);
+
+        return response(['msg'=> "$this->ent $status"]);
     }
 }

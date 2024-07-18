@@ -18,10 +18,10 @@
 
                                     <div class="contact-number">
                                         <ul>
-                                            <li class="phone"><a><i class="fa-solid fa-phone fa-lg me-2"></i> +63 905 277 7784</a></li>
-                                            <li class="whatsapp"><a><i class="fa-brands fa-whatsapp fa-lg me-2 "></i> +63 905 277 7784</a></li>
-                                            <li class="viber"><a><i class="fa-brands fa-viber fa-lg me-2 "></i> +63 905 277 7784</a></li>
-                                            <li class="email"><a><i class="fa-solid fa-envelope fa-lg me-2 "></i> info@mysmdc.ph</a></li>
+                                            <li class="phone"><a><i class="fa-solid fa-phone fa-lg me-2"></i><span> +63 905 277 7784</span></a></li>
+                                            <li class="whatsapp"><a><i class="fa-brands fa-whatsapp fa-lg me-2 "></i><span> +63 905 277 7784</span></a></li>
+                                            <li class="viber"><a><i class="fa-brands fa-viber fa-lg me-2 "></i><span> +63 905 277 7784</span></a></li>
+                                            <li class="email"><a><i class="fa-solid fa-envelope fa-lg me-2 "></i><span> info@mysmdc.ph</span></a></li>
 
                                         </ul>
                                     </div>
@@ -36,8 +36,8 @@
                                     <div class="contact-number">
                                         <h1 class="heading mb-4">For Billing & Concerns</h1>
                                         <ul>
-                                            <li class="phone"><a><i class="fa-solid fa-phone fa-lg me-2"></i> (02) 8858-0300</a></li>
-                                            <li class="whatsapp"><a><i class="fa-brands fa-whatsapp fa-lg me-2 "></i> 0917-500-5151</a></li>
+                                            <li class="phone"><a><i class="fa-solid fa-phone fa-lg me-2"></i><span> (02) 8858-0300</span></a></li>
+                                            <li class="whatsapp"><a><i class="fa-brands fa-whatsapp fa-lg me-2 "></i><span> 0917-500-5151</span></a></li>
                                         </ul>
                                     </div>
                                 </div>

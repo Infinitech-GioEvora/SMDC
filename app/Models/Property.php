@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Property extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "id";
 
     protected $fillable = [
         'name',
@@ -21,6 +23,7 @@ class Property extends Model
         'map',
         'lice',
         'desc',
+        'status',
     ];
 
     public function amenities(): HasMany
@@ -43,8 +46,12 @@ class Property extends Model
         return $this->hasMany(Video::class);
     }
 
-    public function viewing(): BelongsTo
+    public function viewing(): HasOne
     {
-        return $this->belongsTo(Viewing::class);
+        return $this->hasOne(Viewing::class);
+    }
+
+    public function registration(): HasOne {
+        return $this->hasOne(Registration::class);  
     }
 }

@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Viewing extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "id";
 
     protected $fillable = [
         "name",
@@ -22,8 +24,8 @@ class Viewing extends Model
         "property_id",
     ];
 
-    public function property(): HasOne
+    public function property(): BelongsTo
     {
-        return $this->hasOne(Property::class);
+        return $this->belongsTo(Property::class);
     }
 }

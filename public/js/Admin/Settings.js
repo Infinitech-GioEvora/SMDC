@@ -27,11 +27,11 @@ $(document).ready(function () {
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".upd_form input, .upd_form select, .upd_form textarea");
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`);
                             error_msg.insertAfter($(input));
                         }
@@ -57,7 +57,7 @@ function get() {
             if (record) {
                 var keys = ["logo", "desc", "fb", "insta", "email", "phone", "viber", "whatsapp", "disc"];
 
-                for (key of keys) {
+                for (var key of keys) {
                     if (key == "logo") {
 
                     }

@@ -1,0 +1,132 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\Models\Registration as Model;
+use App\Models\Property as Related;
+
+class RegistrationController extends Controller
+{
+    public $ent = 'Registration';
+
+    public function index() {
+        return view('Admin.Registrations');
+    }
+
+    public function all() {
+        $records = Model::with('property')->get();
+
+        $data = [
+            'records' => $records,
+        ];
+
+        return response()->json($data);
+    }
+
+    public function add(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'img' => 'required|image',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'msg' => 'required',
+            'status' => 'required',
+            'property_id' => 'required',
+        ]);
+
+        $record = new Model();
+        $keys = ['name', 'img', 'phone', 'email', 'msg', 'status', 'property_id'];
+        foreach ($keys as $key) {
+            if ($key == "img") {
+                if($request->hasFile($key)) {
+                    $file = $request->$key;
+                    $filename = mt_rand() . '.'.$file->clientExtension();
+                    $file->move('uploads/IDs', $filename );
+                    $record->$key = $filename;
+                }
+            }
+            else {
+                $record->$key = $request->$key;
+            }
+        }
+
+        $record->save();
+
+        return response(['msg' => "Added $this->ent"]);
+    }
+
+    public function edit($id) {
+        $record = Model::find($id);
+
+        $data = [
+            'record' => $record,
+        ];
+
+        return response($data);
+    }
+
+    public function upd(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'msg' => 'required',
+            'status' => 'required',
+            'property_id' => 'required',
+        ]);
+
+        $record = Model::find($request->id);
+        $keys = ['name', 'img', 'phone', 'email', 'msg', 'status', 'property_id'];
+        foreach ($keys as $key) {
+            if ($key == "img") {
+                if($request->hasFile($key)) {
+                    $file = $request->$key;
+                    $filename = mt_rand() . '.'.$file->clientExtension();
+                    $file->move('uploads/IDs', $filename );
+                    $upd[$key] = $filename;
+                }
+            }
+            else {
+                $upd[$key] = $request->$key;
+            }
+        }
+
+        $record->update($upd);
+
+        return response(['msg' => "Updated $this->ent"]);
+    }
+
+    public function del($id) {
+        $record = Model::find($id)->delete();
+        return response(['msg' => "Deleted $this->ent"]);
+    }
+
+    public function get_related() {
+        $records = Related::all()->where("status", "Unpublished");
+
+        $data = [
+            'records' => $records,
+        ];
+
+        return response($data);
+    }
+
+    public function change_status($id, $status) {
+        $record = Model::find($id);
+        $related = Related::find($record->property_id);
+
+        if ($status == "Accept") {
+            $status .= "ed";
+            $related->update(['status' => "Published"]);
+        }
+        else {
+            $status .= "d";
+        }
+        $record->update(['status' => $status]);
+
+        return response(['msg'=> "$this->ent $status"]);
+    }
+}

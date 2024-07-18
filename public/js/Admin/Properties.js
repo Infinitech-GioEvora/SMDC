@@ -54,11 +54,11 @@ $(document).ready(function () {
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".add_form input, .add_form select, .add_form textarea")
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`)
                             error_msg.insertAfter($(input));
                         }
@@ -93,11 +93,11 @@ $(document).ready(function () {
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".upd_form input, .upd_form select, .upd_form textarea");
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`);
                             error_msg.insertAfter($(input));
                         }
@@ -128,7 +128,9 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".edit_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
         $(".upd_form input[name=id]").val(id);
         $(`.upd_modal`).modal("show");
@@ -138,9 +140,9 @@ $(document).ready(function () {
             url: `/admin/${ent}/edit/${id}`,
             success: function (res) {
                 var record = res.record;
-                var keys = ["name", "cat", "type", "price", "locat", "map", "lice", "desc"];
+                var keys = ["name", "cat", "type", "price", "locat", "map", "lice", "desc", "status"];
 
-                for (key of keys) {
+                for (var key of keys) {
                     if (key == "type") {
                         $('select[name=cat]').trigger("change");
                         $(`select[name=${key}]`).val(record[key])
@@ -154,32 +156,62 @@ $(document).ready(function () {
     })
 
     $(document).on("click", ".del_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
         $(".del_form input[name=id]").val(id);
         $(`.del_modal`).modal("show");
     });
 
+    $(document).on("click", ".stat_btn", function () {
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
+
+        var status = $(this).html().split(' ')[0]
+        $.ajax({
+            method: "GET",
+            url: `/admin/${ent}/change/${id}/${status}`,
+            success: function (res) {
+                toastr.success(res.msg);
+                all();
+            },
+        })
+    });
+
     $(document).on("click", ".amens_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
+
         sessionStorage.setItem("amens_fk", id)
         window.location.href = "/admin/amenities"
     });
 
     $(document).on("click", ".feats_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
+
         sessionStorage.setItem("feats_fk", id)
         window.location.href = "/admin/features"
     });
 
     $(document).on("click", ".pics_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
+
         sessionStorage.setItem("pics_fk", id)
         window.location.href = "/admin/pictures"
     });
 
     $(document).on("click", ".vids_btn", function () {
-        var id = $(this).closest('tr').data('id')
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
+        
         sessionStorage.setItem("vids_fk", id)
         window.location.href = "/admin/videos"
     });
@@ -201,8 +233,8 @@ function all() {
             var thead = $("<thead>");
             var thr = $("<tr>");
 
-            var cols = ["Name", "Category", "Type", "Price", "Location", "Action", "Map", "License", "Description"];
-            for (col of cols) {
+            var cols = ["Name", "Category", "Type", "Price", "Location", "Map", "License", "Description", "Status", "Action"];
+            for (var col of cols) {
                 thr.append($("<th>").text(col))
             }
 
@@ -210,35 +242,38 @@ function all() {
             tbl.append(thead);
 
             var tbody = $("<tbody>");
-            var action = 
-                            `
-                                <div class="d-inline-block text-nowrap">                
-                                    <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end m-0">
-                                        <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
-                                        <a href="javascript:;" class="dropdown-item border-bottom border-2 del_btn">Delete</a>
-                                        <a href="javascript:;" class="dropdown-item amens_btn">View Amenities</a>
-                                        <a href="javascript:;" class="dropdown-item feats_btn">View Features</a>
-                                        <a href="javascript:;" class="dropdown-item pics_btn">View Pictures</a>
-                                        <a href="javascript:;" class="dropdown-item vids_btn">View Videos</a>
-                                    </div>
-                                </div>
-                            `
+
+            var stat_btn = ""
+            var action = ""
 
             if (records.length > 0) {
-                for (record of records) {
-                    var keys = ["name", "cat", "type", "price", "locat", "action", "map", "lice", "desc"]
+                for (var record of records) {
+                    var keys = ["name", "cat", "type", "price", "locat", "map", "lice", "desc", "status", "action"]
                     var tr = $("<tr>").data("id", record.id)
 
-                    for (key of keys) {
+                    for (var key of keys) {
+                        var html = ""
                         if (key == "action") {
-                            tr.append($("<td>").html(action))
+                            html = action
+                        }
+                        else if (key == "status") {
+                            var bg = ""
+                            if (record[key] == "Published") {
+                                bg = "success"
+                                stat_btn = `<a href="javascript:;" class="dropdown-item stat_btn">Unpublish Property</a>`
+                            }
+                            else {
+                                bg = "danger"
+                                stat_btn = `<a href="javascript:;" class="dropdown-item stat_btn">Publish Property</a>`
+                            }
+
+                            action = set_action(stat_btn)
+                            html = `<span class="badge bg-${bg}">${record[key]}</span>`
                         }
                         else {
-                            tr.append($("<td>").addClass('text-truncate').html(record[key]));
+                            html = record[key]
                         }
+                        tr.append($("<td>").addClass('text-truncate').html(html))
                     }
                     tbody.append(tr);
                 }
@@ -249,6 +284,10 @@ function all() {
 
             var data_table = $('.records_tbl').DataTable({
                 responsive: true,
+                columnDefs: [
+                    {responsivePriority: 1, targets: -1},
+                    {responsivePriority: 1, targets: -2},
+                ],
                 inlineEditing: true,
                 buttons: [
                     'print', 'copy', 'csv', 'pdf'
@@ -278,4 +317,25 @@ function all() {
             console.log(res);
         },
     });
+}
+
+function set_action(stat_btn) {
+    var action = 
+                    `
+                        <div class="d-inline-block text-nowrap">                
+                            <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end m-0">
+                                <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
+                                <a href="javascript:;" class="dropdown-item border-bottom border-2 del_btn">Delete</a>
+                                ${stat_btn}
+                                <a href="javascript:;" class="dropdown-item amens_btn">View Amenities</a>
+                                <a href="javascript:;" class="dropdown-item feats_btn">View Features</a>
+                                <a href="javascript:;" class="dropdown-item pics_btn">View Pictures</a>
+                                <a href="javascript:;" class="dropdown-item vids_btn">View Videos</a>
+                            </div>
+                        </div>
+                    `
+    return action
 }
