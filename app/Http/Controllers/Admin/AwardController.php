@@ -71,14 +71,16 @@ class AwardController extends Controller
         ]);
 
         $record = Model::find($request->id);
-
         $keys = ['name', 'img', 'type'];
         foreach ($keys as $key) {
             if ($key == "img") {
-                if($request->hasFile($key)) {
-                    $file = $request->$key;
+                if($file = $request->file($key)) {
                     $filename = mt_rand() . '.'.$file->clientExtension();
                     $file->move('uploads/Awards', $filename );
+
+                    $path = public_path("uploads/Awards/".$record->img);
+                    file_exists($path) ? unlink($path) : false;
+
                     $upd[$key] = $filename;
                 }
             }
@@ -88,12 +90,16 @@ class AwardController extends Controller
         }
 
         $record->update($upd);
-        
+
         return response(['msg' => "Updated $this->ent"]);
     }
 
     public function del($id) {
-        $record = Model::find($id)->delete();
+        $record = Model::find($id);
+        $path = public_path("uploads/Awards/".$record->img);
+        file_exists($path) ? unlink($path) : false;
+        $record->delete();
+
         return response(['msg' => "Deleted $this->ent"]);
     }
 }

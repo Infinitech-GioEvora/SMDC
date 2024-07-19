@@ -43,11 +43,18 @@ class SettingController extends Controller
         $keys = ['logo', 'desc', 'fb', 'insta', 'email', 'phone', 'viber', 'whatsapp', 'disc'];
         foreach ($keys as $key) {
             if ($key == "logo") {
-                if($request->hasFile($key)) {
-                    $file = $request->$key;
+                if($file = $request->file($key)) {
                     $filename = mt_rand() . '.'.$file->clientExtension();
                     $file->move('uploads/Logos', $filename );
-                    $count == 0 ? $record->$key = $filename : $upd[$key] = $filename;
+
+                    if ($count > 0) {
+                        $path = public_path("uploads/Logos/".$record->logo);
+                        file_exists($path) ? unlink($path) : false;
+                        $upd[$key] = $filename;
+                    }
+                    else {
+                        $record->$key = $filename;
+                    }
                 }
             }
             else {

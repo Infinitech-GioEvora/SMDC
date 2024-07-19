@@ -70,10 +70,13 @@ class PictureController extends Controller
         $keys = ['img'];
         foreach ($keys as $key) {
             if ($key == "img") {
-                if($request->hasFile($key)) {
-                    $file = $request->$key;
+                if($file = $request->file($key)) {
                     $filename = mt_rand() . '.'.$file->clientExtension();
                     $file->move('uploads/Properties/Pictures', $filename );
+
+                    $path = public_path("uploads/Properties/Pictures/".$record->img);
+                    file_exists($path) ? unlink($path) : false;
+
                     $upd[$key] = $filename;
                 }
             }
@@ -88,7 +91,11 @@ class PictureController extends Controller
     }
 
     public function del($id) {
-        $record = Model::find($id)->delete();
+        $record = Model::find($id);
+        $path = public_path("uploads/Properties/Pictures/".$record->img);
+        file_exists($path) ? unlink($path) : false;
+        $record->delete();
+
         return response(['msg' => "Deleted $this->ent"]);
     }
 }

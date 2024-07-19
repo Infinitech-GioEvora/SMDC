@@ -70,10 +70,13 @@ class VideoController extends Controller
         $keys = ['vid'];
         foreach ($keys as $key) {
             if ($key == "vid") {
-                if($request->hasFile($key)) {
-                    $file = $request->$key;
+                if($file = $request->file($key)) {
                     $filename = mt_rand() . '.'.$file->clientExtension();
                     $file->move('uploads/Properties/Videos', $filename );
+
+                    $path = public_path("uploads/Properties/Videos/".$record->vid);
+                    file_exists($path) ? unlink($path) : false;
+
                     $upd[$key] = $filename;
                 }
             }
@@ -88,7 +91,11 @@ class VideoController extends Controller
     }
 
     public function del($id) {
-        $record = Model::find($id)->delete();
+        $record = Model::find($id);
+        $path = public_path("uploads/Properties/Videos/".$record->vid);
+        file_exists($path) ? unlink($path) : false;
+        $record->delete();
+
         return response(['msg' => "Deleted $this->ent"]);
     }
 }

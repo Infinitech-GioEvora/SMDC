@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     }
 
     public function all() {
-        $records = Model::with('property')->get();
+        $records = Model::with('property')->orderBy('status', 'DESC')->get();
 
         $data = [
             'records' => $records,
@@ -82,10 +82,13 @@ class RegistrationController extends Controller
         $keys = ['name', 'img', 'phone', 'email', 'msg', 'status', 'property_id'];
         foreach ($keys as $key) {
             if ($key == "img") {
-                if($request->hasFile($key)) {
-                    $file = $request->$key;
+                if($file = $request->file($key)) {
                     $filename = mt_rand() . '.'.$file->clientExtension();
                     $file->move('uploads/IDs', $filename );
+
+                    $path = public_path("uploads/IDs/".$record->img);
+                    file_exists($path) ? unlink($path) : false;
+
                     $upd[$key] = $filename;
                 }
             }
@@ -100,7 +103,11 @@ class RegistrationController extends Controller
     }
 
     public function del($id) {
-        $record = Model::find($id)->delete();
+        $record = Model::find($id);
+        $path = public_path("uploads/IDs/".$record->img);
+        file_exists($path) ? unlink($path) : false;
+        $record->delete();
+
         return response(['msg' => "Deleted $this->ent"]);
     }
 

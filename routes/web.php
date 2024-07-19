@@ -30,12 +30,16 @@ Route::get('/', [PageController::class, 'index']);
 Route::get('/about-us', [PageController::class, 'about_us']);
 Route::get('/for-sale', [PageController::class, 'for_sale']);
 Route::get('/for-lease', [PageController::class, 'for_lease']);
-Route::get('/property', [PageController::class, 'property']);
+Route::get('/property/{id}', [PageController::class, 'property']);
 Route::get('/contact-us', [PageController::class, 'contact_us']);
 Route::get('/loan-calculator', [PageController::class, 'loan_calculator']);
 Route::get('/submit-property', [PageController::class, 'submit_property']);
 
+
+
 Route::get('/settings', [PageController::class, 'settings']);
+Route::post('/send-inquiry', [PageController::class, 'send_inquiry']);
+Route::post('/request-viewing', [PageController::class, 'request_viewing']);
 
 
 

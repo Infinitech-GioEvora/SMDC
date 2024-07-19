@@ -432,9 +432,10 @@ p {
 }
 
 .about-header {
+    width: 100%;
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 43%;
     transform: translateY(-50%, -50%);
     z-index: 1;
 }
@@ -736,12 +737,14 @@ p {
 }
 
 
-.property-description .gallery img {
+.property-description .gallery img, 
+.property-description .gallery video {
     max-width: 250px;
     max-height: 250px;
     padding: 4px 2px 4px;
     
 }
+
 #propertyContact{
     width: 400px;
 }

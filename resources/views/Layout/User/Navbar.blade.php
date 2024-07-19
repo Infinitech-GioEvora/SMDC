@@ -18,7 +18,7 @@
             </div>
 
             <div class="call-button">
-                <button class='btn-call' onclick="Call()"><i class="fa-solid fa-phone"></i> Call Us Now</button>
+                <button class='btn-call phone'><i class="fa-solid fa-phone"></i> Call Us Now</button>
             </div>
         </div>
 

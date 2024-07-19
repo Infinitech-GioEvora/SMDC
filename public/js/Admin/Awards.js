@@ -60,6 +60,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (res) {
+                console.log(res)
                 toastr.success(res.msg);
                 all();
                 $(`.upd_form`).trigger("reset");

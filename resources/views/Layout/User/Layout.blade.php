@@ -27,7 +27,7 @@
     @section('scripts')
         @include('Layout/User/Script')
 
-        <script src="{{ asset('js/User/Settings.js') }}"></script>
+        <script src="{{ asset('js/User/Scripts.js') }}"></script>
     @show
 </body>
 

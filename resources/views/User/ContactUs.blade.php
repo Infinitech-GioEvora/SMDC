@@ -52,27 +52,27 @@
                                                 <br /> <br /> "*" indicates required fields
                                             </p>
                                         </div>
-                                        <form action="" method="post">
+                                        <form action="" method="" class="inquiry_form">
                                             <div class="row">
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-group">
                                                         <label htmlFor="">Name *</label>
-                                                        <input type="text" class='form-control' placeholder='Juan Delacruz' required />
+                                                        <input type="text" class='form-control' placeholder='Juan Delacruz' required name='name'/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-4">
                                                         <label htmlFor="">Phone *</label>
-                                                        <input type="text" class='form-control' placeholder='09924401097' required />
+                                                        <input type="text" class='form-control' placeholder='09924401097' required name='phone'/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label htmlFor="">Email *</label>
-                                                    <input type="email" class='form-control' placeholder='juandelacruz@gmail.com' required />
+                                                    <input type="email" class='form-control' placeholder='juandelacruz@gmail.com' required name='email'/>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label htmlFor="">Message *</label>
-                                                    <textarea name="" id="" rows="5" class='form-control' placeholder='send us message'></textarea>
+                                                    <textarea rows="5" class='form-control' placeholder='send us message' name='msg'></textarea>
                                                 </div>
                                                 <input type="submit" class="btn-submit" value="Submit" />
                                             </div>

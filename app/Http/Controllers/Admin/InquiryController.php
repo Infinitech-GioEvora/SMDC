@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Inquiry as Model;
 
+use App\Jobs\SendInquiryMail;
+
 class InquiryController extends Controller
 {
     public $ent = 'Inquiry';
@@ -36,11 +38,12 @@ class InquiryController extends Controller
         $record = new Model();
         $keys = ['name', 'phone', 'email', 'msg'];
         foreach ($keys as $key) {
-            $record->$key = $request->$key;
+            $record->$key = $mail_data[$key] = $request->$key;
         }
 
         $record->save();
 
+        SendInquiryMail::dispatch($mail_data);
         return response(['msg' => "Added $this->ent"]);
     }
 

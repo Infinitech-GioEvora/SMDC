@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Models\Viewing as Model;
 use App\Models\Property as Related;
+
+use App\Jobs\SendUserViewingMail;
+
+use Mail;
+use App\Mail\UserViewingMail;
 
 class ViewingController extends Controller
 {
@@ -17,7 +23,7 @@ class ViewingController extends Controller
     }
 
     public function all() {
-        $records = Model::orderBy('status', 'DESC')->with('property')->get();    
+        $records = Model::with('property')->orderBy('status', 'DESC')->get();    
 
         $data = [
             'records' => $records,
@@ -102,6 +108,19 @@ class ViewingController extends Controller
         $status == "Accept" ? $status .= "ed" : $status .= "d";
         $record->update(['status' => $status]);
 
+        $record = Model::with('property')->where("id", $id)->first();
+
+        $mail_data = [
+            "email" => $record->email,
+            "name" => $record->name,
+            "property" => $record->property->name,
+            "date" => Carbon::parse($record->date)->toFormattedDateString(),
+            "time" => Carbon::createFromFormat('H:i:s', $record->time)->format('g:i a'),
+            "status" => $record->status,
+        ];
+
+        // SendUserViewingMail::dispatch($mail_data);
+        Mail::to($mail_data['email'])->send(new UserViewingMail($mail_data));
         return response(['msg'=> "$this->ent $status"]);
     }
 }
