@@ -56,6 +56,7 @@ $(document).ready(function () {
                 $('.viewing_form').trigger("reset");
             },
             error: function (res) {
+                // console.log(res)
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(`.viewing_form input, .viewing_form select, .viewing_form textarea`)

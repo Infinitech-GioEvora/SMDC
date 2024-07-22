@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\PageController;
 
+use App\Http\Controllers\Admin\AdminController;
+
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\PictureController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\AwardController;
 use App\Http\Controllers\Admin\InquiryController;
@@ -40,8 +42,10 @@ Route::get('/submit-property', [PageController::class, 'submit_property']);
 Route::get('/settings', [PageController::class, 'settings']);
 Route::post('/send-inquiry', [PageController::class, 'send_inquiry']);
 Route::post('/request-viewing', [PageController::class, 'request_viewing']);
+Route::post('/send-registration', [PageController::class,'send_registration']);
 
 
+Route::get('/admin', [AdminController::class, 'index']);
 
 Route::prefix('admin/properties')->group(function () {
     Route::get('/', [PropertyController::class, 'index']);
@@ -72,13 +76,13 @@ Route::prefix('admin/features')->group(function () {
     Route::get('/del/{id}', [FeatureController::class, 'del']);
 });
 
-Route::prefix('admin/pictures')->group(function () {
-    Route::get('/', [PictureController::class, 'index']);
-    Route::post('/', [PictureController::class, 'all']);
-    Route::post('/add', [PictureController::class, 'add']);
-    Route::get('/edit/{id}', [PictureController::class, 'edit']);
-    Route::post('/upd', [PictureController::class, 'upd']);
-    Route::get('/del/{id}', [PictureController::class, 'del']);
+Route::prefix('admin/images')->group(function () {
+    Route::get('/', [ImageController::class, 'index']);
+    Route::post('/', [ImageController::class, 'all']);
+    Route::post('/add', [ImageController::class, 'add']);
+    Route::get('/edit/{id}', [ImageController::class, 'edit']);
+    Route::post('/upd', [ImageController::class, 'upd']);
+    Route::get('/del/{id}', [ImageController::class, 'del']);
 });
 
 Route::prefix('admin/videos')->group(function () {

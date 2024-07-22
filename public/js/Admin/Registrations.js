@@ -101,7 +101,7 @@ $(document).ready(function () {
                 $(`.del_modal`).modal("hide");
             },
             error: function (res) {
-
+                
             },
         });
     });

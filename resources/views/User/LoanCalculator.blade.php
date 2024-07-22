@@ -79,8 +79,6 @@
             var loanAmount = document.getElementById('loanAmount').value;
             var loanInterest = document.getElementById('loanInterest').value;
     
-            // console.log(loanInterest);
-    
             if (!loanAmount || isNaN(loanAmount) || parseFloat(loanAmount) <= 0) {
                 alert('Please enter a Valid Amount.');
                 return;
@@ -108,7 +106,7 @@
     
                 function populateTable(details) {
                     const tableBody = document.getElementById('loan-details');
-                    tableBody.innerHTML = ''; // Clear any existing rows
+                    tableBody.innerHTML = '';
     
                     details.forEach(detail => {
                         const row = document.createElement('tr');
@@ -132,13 +130,8 @@
                         tableBody.appendChild(row);
                     });
                 }
-    
-                // Populate the table with loan details
                 populateTable(LoanDetails);
-    
             }
-    
-    
         };
     </script>
 @endsection

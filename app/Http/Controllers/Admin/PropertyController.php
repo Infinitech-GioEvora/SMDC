@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Property as Model;
+use App\Models\Registration as Related;
+
 
 class PropertyController extends Controller
 {
@@ -86,7 +88,10 @@ class PropertyController extends Controller
     }
 
     public function del($id) {
-        $record = Model::find($id)->delete();
+        $record = Model::find($id);
+        $related = Related::where("property_id", $id)->delete();
+        $record->delete();
+
         return response(['msg' => "Deleted $this->ent"]);
     }
 

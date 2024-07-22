@@ -27,7 +27,7 @@
                     </div>
                     <div class="dropdown">
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target=".add_modal">
-                            <i class='bx bx-plus-circle'></i> Add {{ $ent }}
+                            <i class='bx bx-plus-circle'></i> Add {{ $ent }}s
                         </button>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add {{ $ent }}</h5>
+                    <h5 class="modal-title">Add {{ $ent }}s</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -53,8 +53,8 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="" class="form-label">Video</label>
-                                <input type="file" class="form-control" placeholder="" name="vid"/>
+                                <label for="" class="form-label">Videos</label>
+                                <input type="file" class="form-control" placeholder="" name="vids[]" multiple/>
                             </div>
                         </div>
                 </div>

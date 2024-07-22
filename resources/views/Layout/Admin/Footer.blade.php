@@ -6,7 +6,7 @@
                 document.write(new Date().getFullYear());
             </script>
 
-            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">SMDC</a>
+            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">SMDC Condominium</a>
         </div>
     </div>
 </footer>

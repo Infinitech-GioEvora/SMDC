@@ -4,19 +4,26 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Models\Setting;
 use App\Models\Property;
+use App\Models\Amenity;
+use App\Models\Feature;
+use App\Models\Image;
+use App\Models\Video;
 use App\Models\Inquiry;
 use App\Models\Viewing;
+use App\Models\Registration;
 
 use App\Jobs\SendInquiryMail;
+use App\Jobs\SendAViewingMail;
 
 class PageController extends Controller
 {
     public function index() {
         $where = ['status' => 'Published'];
-        $props = Property::with('pictures')->where($where)->limit(4)->get();
+        $props = Property::with('images')->where($where)->limit(4)->get();
 
         $data = [
             'props' => $props
@@ -31,7 +38,7 @@ class PageController extends Controller
 
     public function for_sale() {
         $where = ['cat' => 'For Sale', 'status' => 'Published'];
-        $records = Property::with('pictures')->where($where)->get();
+        $records = Property::with('images')->where($where)->get();
 
         $data = [
             "records" => $records,
@@ -42,7 +49,7 @@ class PageController extends Controller
 
     public function for_lease() {
         $where = ['cat' => 'For Lease', 'status' => 'Published'];
-        $records = Property::with('pictures')->where($where)->get();
+        $records = Property::with('images')->where($where)->get();
 
         $data = [
             "records" => $records,
@@ -52,13 +59,13 @@ class PageController extends Controller
     }
 
     public function property($id) {;
-        $record = Property::with('pictures', 'amenities', 'features', 'videos')->where('id', $id)->first();
+        $record = Property::with('images', 'amenities', 'features', 'videos')->where('id', $id)->first();
         $where = [
             ['cat', '=', $record->cat],
             ['status', '=', 'Published'],
             ['id','!=', $record->id],
         ];
-        $props = Property::with('pictures')->where($where)->limit(4)->get();
+        $props = Property::with('images')->where($where)->limit(4)->get();
 
         $data = [
             "record" => $record,
@@ -129,9 +136,117 @@ class PageController extends Controller
         foreach ($keys as $key) {
             $record->$key = $request->$key;
         }
-
         $record->save();
 
+        $record = Viewing::with('property')->where("id", $record->id)->first();
+        $mail_data = [
+            "id" => $record->id,
+            "name" => $record->name,
+            "property" => $record->property->name,
+            "date" => Carbon::parse($record->date)->toFormattedDateString(),
+            "time" => Carbon::createFromFormat('H:i:s', $record->time)->format('g:i a'),
+            "msg" => $record->msg,
+        ];
+        SendAViewingMail::dispatch($mail_data);
+
         return response(['msg' => "Submitted Viewing Request"]);
+    }
+
+    public function send_registration(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'img' => 'required|image',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'msg' => 'required',
+            'status' => 'required',
+            'prop_name' => 'required',
+            'cat' => 'required',
+            'type' => 'required',
+            'price' => 'required',
+            'lice' => 'required',
+            'locat' => 'required',
+            'map' => 'required',
+            'desc' => 'required',
+            'prop_status' => 'required',
+            'amens' => 'required',
+            'feats' => 'required',
+            'imgs' => 'required',
+            'vids' => 'required',
+        ]);
+
+        $property = new Property();
+        $keys = ['name', 'cat', 'type', 'price', 'locat', 'map', 'lice', 'desc', 'status'];
+        foreach ($keys as $key) {
+            if ($key == "name" || $key == "status") {
+                $property->$key = $request["prop_$key"];
+            }
+            else {
+                $property->$key = $request->$key;
+            }
+        }
+        $property->save();
+
+        $amens = explode("\r\n", $request->amens);
+        foreach ($amens as $amen) {
+            $record = new Amenity();
+            $record->name = $amen;
+            $record->property_id = $property->id;
+            $record->save();  
+        }
+
+        $feats = explode("\r\n", $request->feats);
+        foreach ($feats as $feat) {
+            $record = new Feature();
+            $record->name = $feat;
+            $record->property_id = $property->id;
+            $record->save();  
+        }
+
+        if($request->hasFile('imgs')) {
+            foreach ($request->imgs as $file) {
+                $filename = mt_rand() . '.'.$file->clientExtension();
+                $file->move('uploads/Properties/Images', $filename );
+    
+                $record = new Image();
+                $record->img = $filename;
+                $record->property_id = $property->id;
+                $record->save();   
+            } 
+        }
+
+        if($request->hasFile('vids')) {
+            foreach ($request->vids as $file) {
+                $filename = mt_rand() . '.'.$file->clientExtension();
+                $file->move('uploads/Properties/Videos', $filename );
+    
+                $record = new Video();
+                $record->vid = $filename;
+                $record->property_id = $property->id;
+                $record->save();   
+            } 
+        }
+
+        $registration = new Registration();
+        $keys = ['name', 'img', 'phone', 'email', 'msg', 'status', 'property_id'];
+        foreach ($keys as $key) {
+            if ($key == "img") {
+                if($request->hasFile($key)) {
+                    $file = $request->$key;
+                    $filename = mt_rand() . '.'.$file->clientExtension();
+                    $file->move('uploads/IDs', $filename );
+                    $registration->$key = $filename;
+                }
+            }
+            else if ($key == "property_id") {
+                $registration->$key = $property->id;
+            }
+            else {
+                $registration->$key = $request->$key;
+            }
+        }
+        $registration->save();
+
+        return response(['msg' => "Property Submitted"]);
     }
 }

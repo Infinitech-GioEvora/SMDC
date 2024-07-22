@@ -36,9 +36,9 @@ class Property extends Model
         return $this->hasMany(Feature::class);
     }
 
-    public function pictures(): HasMany
+    public function images(): HasMany
     {
-        return $this->hasMany(Picture::class);
+        return $this->hasMany(Image::class);
     }
 
     public function videos(): HasMany

@@ -28,20 +28,19 @@ class FeatureController extends Controller
 
     public function add(Request $request) {
         $request->validate([
-            'name' => 'required',
+            'names' => 'required',
             'property_id' => 'required',
         ]);
 
-        $record = new Model();
-
-        $keys = ['name', 'property_id'];
-        foreach ($keys as $key) {
-            $record->$key = $request->$key;
+        $names = explode("\r\n", $request->names);
+        foreach ($names as $name) {
+            $record = new Model();
+            $record->name = $name;
+            $record->property_id = $request->property_id;
+            $record->save();  
         }
 
-        $record->save();
-
-        return response(['msg' => "Added $this->ent"]);
+        return response(['msg' => "Added $this->ent"."s"]);
     }
 
     public function edit($id) {

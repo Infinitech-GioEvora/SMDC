@@ -27,7 +27,7 @@
                     </div>
                     <div class="dropdown">
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target=".add_modal">
-                            <i class='bx bx-plus-circle'></i> Add {{ $ent }}
+                            <i class='bx bx-plus-circle'></i> Add Amenities
                         </button>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add {{ $ent }}</h5>
+                    <h5 class="modal-title">Add Amenities</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -52,9 +52,9 @@
                         <input type="hidden" name="property_id" class="form-control">
 
                         <div class="row">
-                            <div class="col">
-                                <label for="" class="form-label">Name</label>
-                                <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Names</label>
+                                <textarea class="form-control" cols="30" rows="7" placeholder="Seperate each amenity by line." name="names"></textarea>
                             </div>
                         </div>
                 </div>

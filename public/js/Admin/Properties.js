@@ -198,13 +198,13 @@ $(document).ready(function () {
         window.location.href = "/admin/features"
     });
 
-    $(document).on("click", ".pics_btn", function () {
+    $(document).on("click", ".imgs_btn", function () {
         var tr = $(this).closest('tr')
         var id = ""
         tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
-        sessionStorage.setItem("pics_fk", id)
-        window.location.href = "/admin/pictures"
+        sessionStorage.setItem("imgs_fk", id)
+        window.location.href = "/admin/images"
     });
 
     $(document).on("click", ".vids_btn", function () {
@@ -332,7 +332,7 @@ function set_action(stat_btn) {
                                 ${stat_btn}
                                 <a href="javascript:;" class="dropdown-item amens_btn">View Amenities</a>
                                 <a href="javascript:;" class="dropdown-item feats_btn">View Features</a>
-                                <a href="javascript:;" class="dropdown-item pics_btn">View Pictures</a>
+                                <a href="javascript:;" class="dropdown-item imgs_btn">View Images</a>
                                 <a href="javascript:;" class="dropdown-item vids_btn">View Videos</a>
                             </div>
                         </div>

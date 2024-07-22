@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Registration as Model;
 use App\Models\Property as Related;
 
+use App\Jobs\SendRegistrationMail;
+
 class RegistrationController extends Controller
 {
     public $ent = 'Registration';
@@ -133,6 +135,14 @@ class RegistrationController extends Controller
             $status .= "d";
         }
         $record->update(['status' => $status]);
+
+        $mail_data = [
+            "email" => $record->email,
+            "name" => $record->name,
+            "property" => $related->name,
+            "status" => $record->status,
+        ];
+        SendRegistrationMail::dispatch($mail_data);
 
         return response(['msg'=> "$this->ent $status"]);
     }

@@ -47,7 +47,7 @@
         <li class="menu-item {{ request()->is('/admin/registrations') ? 'active' : '' }}">
             <a href="/admin/registrations" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-notepad"></i>
-                <div data-i18n="Registrations">Submitted Properties</div>
+                <div data-i18n="Registrations">Registrations</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('/admin/settings') ? 'active' : '' }}">

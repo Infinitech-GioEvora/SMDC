@@ -147,7 +147,7 @@ $(document).ready(function () {
         var id = ""
         tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
-        var status = $(this).html()
+        var status = $(this).html().toLowerCase()
         $.ajax({
             method: "GET",
             url: `/admin/${ent}/change/${id}/${status}`,
@@ -155,6 +155,9 @@ $(document).ready(function () {
                 toastr.success(res.msg);
                 all();
             },
+            error: function (res) {
+                // console.log(res)
+            }
         })
     });
 })

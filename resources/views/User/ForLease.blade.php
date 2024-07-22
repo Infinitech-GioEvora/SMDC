@@ -21,8 +21,8 @@
                         <div class="col-md-3">
                             <div class="card featured-card">
                                 <div class="img-hover-zoom">
-                                    @if (count($property->pictures) > 0)
-                                    <img src={{ "../uploads/Properties/Pictures/". $property->pictures[0]->img }} alt="{{ $property->name }}"/>
+                                    @if (count($property->images) > 0)
+                                    <img src={{ "../uploads/Properties/Images/". $property->images[0]->img }} alt="{{ $property->name }}"/>
                                     @else 
                                     <img src="../img/no_image.jpg" alt="no image"/>
                                     @endif

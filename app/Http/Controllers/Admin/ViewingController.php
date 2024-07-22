@@ -9,10 +9,7 @@ use Carbon\Carbon;
 use App\Models\Viewing as Model;
 use App\Models\Property as Related;
 
-use App\Jobs\SendUserViewingMail;
-
-use Mail;
-use App\Mail\UserViewingMail;
+use App\Jobs\SendUViewingMail;
 
 class ViewingController extends Controller
 {
@@ -104,12 +101,14 @@ class ViewingController extends Controller
     }
 
     public function change_status($id, $status) {
+        $status == ucfirst($status) ? $origin = "mail" : $origin = "web";
+
         $record = Model::find($id);
+        $status = ucfirst($status);
         $status == "Accept" ? $status .= "ed" : $status .= "d";
         $record->update(['status' => $status]);
 
         $record = Model::with('property')->where("id", $id)->first();
-
         $mail_data = [
             "email" => $record->email,
             "name" => $record->name,
@@ -118,9 +117,13 @@ class ViewingController extends Controller
             "time" => Carbon::createFromFormat('H:i:s', $record->time)->format('g:i a'),
             "status" => $record->status,
         ];
+        SendUViewingMail::dispatch($mail_data);
 
-        // SendUserViewingMail::dispatch($mail_data);
-        Mail::to($mail_data['email'])->send(new UserViewingMail($mail_data));
-        return response(['msg'=> "$this->ent $status"]);
+        if ($origin == "mail") {
+            return view("Mail.ViewingStatus")->with(['status'=> $status]);
+        }
+        else {
+            return response(['msg'=> "$this->ent $status"]);
+        }
     }
 }

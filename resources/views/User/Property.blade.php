@@ -6,8 +6,8 @@
     <main>
 
         <section class="hero hero-class">
-            @if (count($data['record']->pictures) > 0)
-            <img src={{ "../uploads/Properties/Pictures/". $data['record']->pictures[0]->img }} alt="{{ $data['record']->name }}"/>
+            @if (count($data['record']->images) > 0)
+            <img src={{ "../uploads/Properties/Images/". $data['record']->images[0]->img }} alt="{{ $data['record']->name }}"/>
             @else
             <img src="../img/no_image.jpg" alt="no image"/>
             @endif
@@ -83,7 +83,7 @@
 
                         <div class="property-description mb-4">
                             <h2 class="heading">Amenities</h2>
-                            @if (count($data['record']->pictures))
+                            @if (count($data['record']->amenities))
                             <ul>
                                 @foreach ($data['record']->amenities as $amenity)
                                 <li>{{ $amenity->name }}</li>
@@ -115,10 +115,10 @@
                         <div class="property-description mb-4 px-0">
                             <h2 class="heading">Gallery</h2>
                             <div class="gallery">
-                                @forelse ($data['record']->pictures as $picture)
-                                <img src={{ "../uploads/Properties/Pictures/". $picture->img }} alt="{{ $data['record']->name }}"/>
+                                @forelse ($data['record']->images as $image)
+                                <img src={{ "../uploads/Properties/Images/". $image->img }} alt="{{ $data['record']->name }}"/>
                                 @empty
-                                <p>No Pictures Found</p>
+                                <p>No Images Found</p>
                                 @endforelse
                             </div>
                         </div>
@@ -204,8 +204,8 @@
                         <div class="col-md-3">
                             <div class="card featured-card">
                                 <div class="img-hover-zoom">
-                                    @if (count($property->pictures) > 0)
-                                    <img src={{ "../uploads/Properties/Pictures/". $property->pictures[0]->img }} alt="{{ $property->name }}"/>
+                                    @if (count($property->images) > 0)
+                                    <img src={{ "../uploads/Properties/Images/". $property->images[0]->img }} alt="{{ $property->name }}"/>
                                     @else 
                                     <img src="../img/no_image.jpg" alt="no image"/>
                                     @endif

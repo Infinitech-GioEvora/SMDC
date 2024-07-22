@@ -28,30 +28,23 @@ class VideoController extends Controller
 
     public function add(Request $request) {
         $request->validate([
-            'vid' => 'required',
+            'vids' => 'required',
             'property_id' => 'required',
         ]);
 
-        $record = new Model();
-
-        $keys = ['vid', 'property_id'];
-        foreach ($keys as $key) {
-            if ($key == "vid") {
-                if($request->hasFile($key)) {
-                    $file = $request->$key;
-                    $filename = mt_rand() . '.'.$file->clientExtension();
-                    $file->move('uploads/Properties/Videos', $filename );
-                    $record->$key = $filename;
-                }
-            }
-            else {
-                $record->$key = $request->$key;
-            }
+        if($request->hasFile('vids')) {
+            foreach ($request->vids as $file) {
+                $filename = mt_rand() . '.'.$file->clientExtension();
+                $file->move('uploads/Properties/Videos', $filename );
+    
+                $record = new Model();
+                $record->vid = $filename;
+                $record->property_id = $request->property_id;
+                $record->save();   
+            } 
         }
 
-        $record->save();
-
-        return response(['msg' => "Added $this->ent"]);
+        return response(['msg' => "Added $this->ent"."s"]);
     }
 
     public function edit($id) {
