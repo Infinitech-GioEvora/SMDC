@@ -38,6 +38,14 @@
             td video {
                 width: 17rem;
             }
+
+            .count {
+                cursor: pointer;
+            }
+
+            .count i {
+                font-size: 3rem;
+            }
         </style>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -100,6 +108,9 @@
         <script src="../assets/Admin/vendor/js/bootstrap.js"></script>
         <script src="../assets/Admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
+        <!-- Vendors JS -->
+        <!-- Apex Charts -->
+        <script src="../assets/Admin/vendor/libs/apex-charts/apexcharts.js"></script>
         <!-- Data Tables -->
         <script src="../assets/Admin/vendor/libs/DataTables/datatables.min.js"></script>
 

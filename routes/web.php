@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\User\BotManController;
 use App\Http\Controllers\User\PageController;
 
 use App\Http\Controllers\Admin\AdminController;
@@ -28,6 +29,8 @@ use App\Http\Controllers\Admin\SettingController;
 |
 */
 
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'botman']);
+
 Route::get('/', [PageController::class, 'index']);
 Route::get('/about-us', [PageController::class, 'about_us']);
 Route::get('/for-sale', [PageController::class, 'for_sale']);
@@ -46,6 +49,7 @@ Route::post('/send-registration', [PageController::class,'send_registration']);
 
 
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/chart-data', [AdminController::class, 'chart_data']);
 
 Route::prefix('admin/properties')->group(function () {
     Route::get('/', [PropertyController::class, 'index']);

@@ -981,3 +981,7 @@ input.invalid {
     position: relative;
     padding-bottom: 100%;
 }
+
+#botmanWidgetRoot>div>div>div:nth-child(1) {
+    color: white !important;
+}
