@@ -60,8 +60,8 @@
                                                         <input type="text" class='form-control' placeholder='Juan Delacruz' required name='name'/>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-4">
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-group">
                                                         <label htmlFor="">Phone *</label>
                                                         <input type="text" class='form-control' placeholder='09924401097' required name='phone'/>
                                                     </div>

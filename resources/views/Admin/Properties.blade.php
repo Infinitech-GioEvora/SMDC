@@ -49,45 +49,45 @@
                 </div>
                 <div class="modal-body">
                     <form class="add_form">
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Category</label>
                                 <select class="form-select" name="cat">
                                     <option>For Sale</option>
                                     <option>For Lease</option>
                                 </select>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Type</label>
                                 <select class="form-select" name="type">
 
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-8 mb-3">
+                        <div class="row mb-3">
+                            <div class="col-8">
                                 <label for="" class="form-label">Price</label>
                                 <input type="text" class="form-control" placeholder="Enter Pricing Details" name="price"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">License</label>
                                 <input type="text" class="form-control" placeholder="Enter License" name="lice"/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="col">
                                     <label for="" class="form-label">Location</label>
                                     <input type="text" class="form-control" placeholder="Enter Location Details" name="locat"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Google Map Link</label>
                                 <input type="text" class="form-control" placeholder="Enter Google Map Link" name="map"/>
                             </div>
@@ -122,45 +122,45 @@
                     <form class="upd_form">
                         <input type="hidden" name="id" class="form-control">
 
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Category</label>
                                 <select class="form-select" name="cat">
                                     <option>For Sale</option>
                                     <option>For Lease</option>
                                 </select>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Type</label>
                                 <select class="form-select" name="type">
 
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-8 mb-3">
+                        <div class="row mb-3">
+                            <div class="col-8">
                                 <label for="" class="form-label">Price</label>
                                 <input type="text" class="form-control" placeholder="Enter Pricing Details" name="price"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">License</label>
                                 <input type="text" class="form-control" placeholder="Enter License" name="lice"/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
-                                <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="col">
                                     <label for="" class="form-label">Location</label>
                                     <input type="text" class="form-control" placeholder="Enter Location Details" name="locat"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Google Map Link</label>
                                 <input type="text" class="form-control" placeholder="Enter Google Map Link" name="map"/>
                             </div>
@@ -192,7 +192,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="mb-3">Are you sure you want to delete this {{ $ent }}?</h5>
+                    <h5>Are you sure you want to delete this {{ $ent }}?</h5>
                     <form class="del_form">
                         <input type="hidden" name="id" class="form-control">
 

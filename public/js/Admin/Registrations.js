@@ -123,7 +123,7 @@ $(document).ready(function () {
 
                 for (var key of keys) {
                     if (key == "img") {
-
+                        $(`.upd_form img[name=${key}_prev]`).attr("src", `/uploads/IDs/${record["img"]}`)
                     }
                     else if (key == "property_id") {
                         get_related("upd", record[key])
@@ -159,6 +159,19 @@ $(document).ready(function () {
                 all();
             },
         })
+    });
+
+    $(".add_form input[name=img], .upd_form input[name=img]").change(function () { 
+        var form = $(this).closest("form").attr("class")
+        var files = this.files
+
+        if (files) {
+            var reader = new FileReader()
+            reader.onload = function () {
+                $(`.${form} img[name=img_prev]`).attr("src", reader.result)
+            }
+            reader.readAsDataURL(files[0])
+        }
     });
 })
 
@@ -286,7 +299,6 @@ function get_related(form, value) {
         url: `/admin/${ent}/get-related`,
         success: function (res) {
             var records = res.records
-
             for (var record of records) {
                 var option = $("<option>").val(record.id).html(record.name)
                 $(select).append(option)

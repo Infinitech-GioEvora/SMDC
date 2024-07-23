@@ -114,7 +114,7 @@ class RegistrationController extends Controller
     }
 
     public function get_related() {
-        $records = Related::all()->where("status", "Unpublished");
+        $records = Related::where("status", "Unpublished")->get();
 
         $data = [
             'records' => $records,

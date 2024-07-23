@@ -50,34 +50,34 @@
                 </div>
                 <div class="modal-body">
                     <form class="add_form">
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <div class="col mb-3">
+                        <div class="row g-2 mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Phone</label>
                                 <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Email</label>
                                 <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <div class="col mb-3">
+                        <div class="row g-2 mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Date</label>
                                 <input type="date" class="form-control" placeholder="" name="date"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Time</label>
                                 <input type="time" class="form-control" placeholder="" name="time"/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Property</label>
                                 <select class="form-select" name="property_id"></select>
                             </div>
@@ -112,34 +112,34 @@
                     <form class="upd_form">
                         <input type="hidden" name="id" class="form-control">
 
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <div class="col mb-3">
+                        <div class="row g-2 mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Phone</label>
                                 <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Email</label>
                                 <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <div class="col mb-3">
+                        <div class="row g-2 mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Date</label>
                                 <input type="date" class="form-control" placeholder="" name="date"/>
                             </div>
-                            <div class="col mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Time</label>
                                 <input type="time" class="form-control" placeholder="" name="time"/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="" class="form-label">Property</label>
                                 <select class="form-select" name="property_id"></select>
                             </div>
@@ -171,7 +171,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="mb-3">Are you sure you want to delete this {{ $ent }}?</h5>
+                    <h5>Are you sure you want to delete this {{ $ent }}?</h5>
                     <form class="del_form">
                         <input type="hidden" name="id" class="form-control">
 

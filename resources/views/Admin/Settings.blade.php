@@ -12,46 +12,49 @@
             </div>
 
             <form class="upd_form">
-                <div class="row">
-                    <div class="col mb-3">
+                <div class="row mb-3">
+                    <div class="col-6">
                         <label for="" class="form-label">Logo</label>
                         <input type="file" class="form-control" placeholder="" name="logo"/>
                     </div>
+                    <div class="col-6 d-flex justify-content-center align-items-center">
+                        <img name="logo_prev" src="">
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
+                <div class="row mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Facebook Link</label>
                         <input type="text" class="form-control" placeholder="Enter Facebook Link" name="fb"/>
                     </div>
-                    <div class="col mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Instagram Link</label>
                         <input type="text" class="form-control" placeholder="Enter Instagram Link" name="insta"/>
                     </div>
-                    <div class="col mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Email Address</label>
                         <input type="email" class="form-control" placeholder="Enter Email Address" name="email"/>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
+                <div class="row mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Phone Number</label>
                         <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone"/>
                     </div>
-                    <div class="col mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Viber Number</label>
                         <input type="text" class="form-control" placeholder="Enter Viber Number" name="viber"/>
                     </div>
-                    <div class="col mb-3">
+                    <div class="col">
                         <label for="" class="form-label">What's App Number</label>
                         <input type="text" class="form-control" placeholder="Enter What's App Number" name="whatsapp"/>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
+                <div class="row mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Description</label>
                         <textarea class="form-control" cols="30" rows="7" placeholder="Enter Description" name="desc"></textarea>
                     </div>
-                    <div class="col mb-3">
+                    <div class="col">
                         <label for="" class="form-label">Disclaimer</label>
                         <textarea class="form-control" cols="30" rows="7" placeholder="Enter Disclaimer" name="disc"></textarea>
                     </div>

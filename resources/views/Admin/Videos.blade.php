@@ -105,7 +105,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="mb-3">Are you sure you want to delete this {{ $ent }}?</h5>
+                    <h5>Are you sure you want to delete this {{ $ent }}?</h5>
                     <form class="del_form">
                         <input type="hidden" name="id" class="form-control">
 

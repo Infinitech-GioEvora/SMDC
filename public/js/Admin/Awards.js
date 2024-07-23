@@ -122,7 +122,7 @@ $(document).ready(function () {
 
                 for (var key of keys) {
                     if (key == "img") {
-
+                        $(`.upd_form img[name=${key}_prev]`).attr("src", `/uploads/Awards/${record["img"]}`)
                     }
                     else {
                         $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
@@ -139,6 +139,19 @@ $(document).ready(function () {
 
         $(".del_form input[name=id]").val(id);
         $(`.del_modal`).modal("show");
+    })
+
+    $(".add_form input[name=img], .upd_form input[name=img]").change(function () { 
+        var form = $(this).closest("form").attr("class")
+        var files = this.files
+
+        if (files) {
+            var reader = new FileReader()
+            reader.onload = function () {
+                $(`.${form} img[name=img_prev]`).attr("src", reader.result)
+            }
+            reader.readAsDataURL(files[0])
+        }
     });
 })
 
