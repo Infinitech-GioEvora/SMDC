@@ -41,7 +41,7 @@
 
     <!-- Add Modal -->
     <div class="modal fade add_modal" tabindex="-1">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add {{ $ent }}s</h5>
@@ -51,10 +51,15 @@
                     <form class="add_form">
                         <input type="hidden" name="property_id" class="form-control">
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col">
                                 <label for="" class="form-label">Images</label>
                                 <input type="file" class="form-control" placeholder="" name="imgs[]" multiple/>
+                            </div>
+                        </div>
+                        <div class="row img_prev">
+                            <div class="col mb-3 d-flex justify-content-center align-items-center">
+                                <img src="/img/no_image.jpg">
                             </div>
                         </div>
                 </div>
@@ -80,10 +85,15 @@
                     <form class="upd_form">
                         <input type="hidden" name="id" class="form-control">
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col">
                                 <label for="" class="form-label">Image</label>
                                 <input type="file" class="form-control" placeholder="" name="img"/>
+                            </div>
+                        </div>
+                        <div class="row img_prev">
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <img src="/img/no_image.jpg">
                             </div>
                         </div>
                 </div>

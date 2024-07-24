@@ -120,10 +120,22 @@ $(document).ready(function () {
             url: `/admin/${ent}/edit/${id}`,
             success: function (res) {
                 var record = res.record;
-                var keys = [];
+                var keys = ["vid"];
 
                 for (var key of keys) {
-                    $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
+                    if (key == "vid") {
+                        $(`.upd_form .${key}_prev`).empty()
+                        $(`.upd_form .${key}_prev`).append(`
+                                                                <div class="col mb-3 d-flex justify-content-center align-items-center">
+                                                                    <video controls>
+                                                                        <source src="/uploads/Properties/Videos/${record[key]}"> 
+                                                                    </video>
+                                                                </div>
+                                                            `)
+                    }
+                    else {
+                        $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
+                    }
                 }
             },
         })
@@ -137,6 +149,24 @@ $(document).ready(function () {
         $(".del_form input[name=id]").val(id);
         $(`.del_modal`).modal("show");
     });
+
+    $(".add_form input[name='vids[]'], .upd_form input[name=vid]").change(function () { 
+        var form = $(this).closest("form").attr("class")
+        var files = this.files
+        $(`.${form} .vid_prev`).empty()
+
+        for (var file of files) {
+            var video = `
+                            <div class="col mb-3 d-flex justify-content-center align-items-center">
+                                <video controls>
+                                    <source src="${URL.createObjectURL(file)}">
+                                </video>
+                            </div>
+                        `
+            $(`.${form} .vid_prev`).append(video)
+        }
+    })
+
 })
 
 var ent = $(".ent").text().toLowerCase();

@@ -48,7 +48,12 @@
             }
 
             form img {
-                max-height: 5rem;
+                max-height: 7rem;
+            }
+
+            form video {
+                width: 100%;
+                width: 17rem;
             }
         </style>
 

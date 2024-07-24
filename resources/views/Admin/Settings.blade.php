@@ -18,7 +18,7 @@
                         <input type="file" class="form-control" placeholder="" name="logo"/>
                     </div>
                     <div class="col-6 d-flex justify-content-center align-items-center">
-                        <img name="logo_prev" src="">
+                        <img name="logo_prev" src="/img/no_image.jpg">
                     </div>
                 </div>
                 <div class="row mb-3">
