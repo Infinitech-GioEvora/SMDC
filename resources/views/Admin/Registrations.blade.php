@@ -60,8 +60,12 @@
                                 <label for="" class="form-label">ID Picture</label>
                                 <input type="file" class="form-control" placeholder="" name="img"/>
                             </div>
-                            <div class="col-6 d-flex justify-content-center align-items-center">
-                                <img name="img_prev" src="/img/no_image.jpg">
+                            <div class="col-6">
+                                <div class="row img_prev">
+                                    <div class="col d-flex justify-content-center align-items-center">
+                                        <img src="/img/no_image.jpg">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row g-2 mb-3">
@@ -117,12 +121,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col">
+                            <div class="col-6">
                                 <label for="" class="form-label">ID Picture</label>
                                 <input type="file" class="form-control" placeholder="" name="img"/>
                             </div>
-                            <div class="col-6 d-flex justify-content-center align-items-center">
-                                <img name="img_prev" src="/img/no_image.jpg">
+                            <div class="col-6">
+                                <div class="row img_prev">
+                                    <div class="col d-flex justify-content-center align-items-center">
+                                        <img src="/img/no_image.jpg">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row g-2 mb-3">

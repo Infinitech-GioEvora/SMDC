@@ -126,7 +126,7 @@ $(document).ready(function () {
                     if (key == "img") {
                         $(`.upd_form .${key}_prev`).empty()
                         $(`.upd_form .${key}_prev`).append(`
-                                                                <div class="col mb-3 d-flex justify-content-center align-items-center">
+                                                                <div class="col d-flex justify-content-center align-items-center">
                                                                     <img src="/uploads/Properties/Images/${record[key]}">
                                                                 </div>
                                                           `)

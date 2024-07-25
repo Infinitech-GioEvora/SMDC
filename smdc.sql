@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 23, 2024 at 08:28 AM
+-- Generation Time: Jul 25, 2024 at 01:20 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -61,6 +61,13 @@ CREATE TABLE `awards` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `awards`
+--
+
+INSERT INTO `awards` (`id`, `name`, `img`, `type`, `created_at`, `updated_at`) VALUES
+(1, 'The Philippines Best Developer Winner 2018', '996118326.jpg', 'International Awards', '2024-07-23 01:17:09', '2024-07-23 01:17:09');
 
 -- --------------------------------------------------------
 
@@ -129,7 +136,10 @@ CREATE TABLE `images` (
 
 INSERT INTO `images` (`id`, `img`, `property_id`, `created_at`, `updated_at`) VALUES
 (1, '881612172.jpg', 1, '2024-07-22 01:08:18', '2024-07-22 01:08:18'),
-(2, '1684309519.webp', 1, '2024-07-22 01:08:18', '2024-07-22 01:08:18');
+(2, '1684309519.webp', 1, '2024-07-22 01:08:18', '2024-07-22 01:08:18'),
+(4, '1536928217.jpg', 4, '2024-07-23 01:19:53', '2024-07-23 01:19:53'),
+(5, '640484783.webp', 4, '2024-07-23 01:19:53', '2024-07-23 01:19:53'),
+(6, '664849695.jpg', 4, '2024-07-23 01:19:53', '2024-07-23 01:19:53');
 
 -- --------------------------------------------------------
 
@@ -260,10 +270,10 @@ CREATE TABLE `properties` (
 --
 
 INSERT INTO `properties` (`id`, `name`, `cat`, `type`, `price`, `locat`, `map`, `lice`, `desc`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Axis Residences', 'For Sale', 'RFO', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'asdsada', 'Published', '2024-07-22 18:20:45', '2024-07-23 00:11:35'),
-(3, 'Gold Residences', 'For Lease', 'Commercial', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'asdasdas', 'Published', '2024-07-22 18:20:50', '2024-07-23 00:11:39'),
-(4, 'Allied Residences', 'For Sale', 'Pre-selling', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'sadsad', 'Published', '2024-07-22 18:26:20', '2024-07-22 23:44:39'),
-(5, 'California Residences', 'For Lease', 'Residential', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'asdasd', 'Published', '2024-07-22 18:51:21', '2024-07-22 22:38:37');
+(2, 'Axis Residences', 'For Sale', 'RFO', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'asdsada', 'Published', '2024-07-22 18:20:45', '2024-07-24 17:18:50'),
+(3, 'Gold Residences', 'For Lease', 'Commercial', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'asdasdas', 'Unpublished', '2024-07-22 18:20:50', '2024-07-23 00:57:27'),
+(4, 'Allied Residences', 'For Sale', 'Pre-selling', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'sadsad', 'Published', '2024-07-22 18:26:20', '2024-07-23 00:59:08'),
+(5, 'California Residences', 'For Lease', 'Residential', 'PHP 25,000+ /month', 'Ninoy Aquino Ave. Brgy. Sto Nino, Paranaque City', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7727.852210331857!2d121.009331!3d14.431422!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1a5aa10e2b7%3A0x3d8af3ed0ec46017!2sSouth%20Residences%20Tower%202!5e0!3m2!1sen!2sus!4v1721090819885!5m2!1sen!2sus', 'HLURB LS No. 035186 (phase1) / DHSUD LS No. 082 (phase2)', 'asdasd', 'Unpublished', '2024-07-22 18:51:21', '2024-07-23 00:57:24');
 
 -- --------------------------------------------------------
 
@@ -283,6 +293,13 @@ CREATE TABLE `registrations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `registrations`
+--
+
+INSERT INTO `registrations` (`id`, `name`, `img`, `phone`, `email`, `msg`, `status`, `property_id`, `created_at`, `updated_at`) VALUES
+(1, 'Moses Alcantara', '888547949.jpg', '09685913442', 'mosesalcantara123@gmail.com', 'sdasdasd', 'Pending', 2, '2024-07-23 02:29:05', '2024-07-23 02:29:05');
 
 -- --------------------------------------------------------
 
@@ -310,7 +327,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `logo`, `desc`, `fb`, `insta`, `email`, `phone`, `viber`, `whatsapp`, `disc`, `created_at`, `updated_at`) VALUES
-(1, '1905447118.jpg', 'Every single day, SM touches the lives of millions of people through its stores, malls, banks, hotels and leisure facilities. Now, Filipinos can live in style, comfort, and convenience with SM Development Corporation.', 'https://www.facebook.com/mysmdcphs', 'https://www.instagram.com/mysmdc.ph/', 'mosesalcantara123@gmail.com', '+63 905 277 7784', '+63 905 277 7784', '+63 905 277 7784', 'To promote SMDC Projects and increase Sales and Marketing of SMDC Condominiums, all information stated are intended to give a general overview of the project only and does not constitute any part of an offer or contract. www.smdc.com is the official website of SMDC.', '2024-07-22 22:04:27', '2024-07-22 22:04:27');
+(2, '2017847183.jpg', 'Every single day, SM touches the lives of millions of people through its stores, malls, banks, hotels and leisure facilities. Now, Filipinos can live in style, comfort, and convenience with SM Development Corporation.', 'https://www.facebook.com/mysmdcphs', 'https://www.instagram.com/mysmdc.ph/', 'mosesalcantara123@gmail.com', '+63 905 277 7784', '+63 905 277 7784', '+63 905 277 7784', 'To promote SMDC Projects and increase Sales and Marketing of SMDC Condominiums, all information stated are intended to give a general overview of the project only and does not constitute any part of an offer or contract. www.smdc.com is the official website of SMDC.', '2024-07-23 16:32:40', '2024-07-23 16:32:40');
 
 -- --------------------------------------------------------
 
@@ -342,6 +359,15 @@ CREATE TABLE `videos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`id`, `vid`, `property_id`, `created_at`, `updated_at`) VALUES
+(8, '1546200691.mp4', 4, '2024-07-23 18:36:51', '2024-07-23 18:36:51'),
+(9, '245752635.mp4', 4, '2024-07-23 18:36:51', '2024-07-23 18:36:51'),
+(10, '335651573.mp4', 4, '2024-07-23 18:36:51', '2024-07-23 18:36:51');
 
 -- --------------------------------------------------------
 
@@ -494,7 +520,7 @@ ALTER TABLE `amenities`
 -- AUTO_INCREMENT for table `awards`
 --
 ALTER TABLE `awards`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -512,7 +538,7 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
@@ -548,13 +574,13 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT for table `registrations`
 --
 ALTER TABLE `registrations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -566,7 +592,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `viewings`

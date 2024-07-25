@@ -122,7 +122,12 @@ $(document).ready(function () {
 
                 for (var key of keys) {
                     if (key == "img") {
-                        $(`.upd_form img[name=${key}_prev]`).attr("src", `/uploads/Awards/${record["img"]}`)
+                        $(`.upd_form .${key}_prev`).empty()
+                        $(`.upd_form .${key}_prev`).append(`
+                                                                <div class="col d-flex justify-content-center align-items-center">
+                                                                    <img src="/uploads/Awards/${record[key]}">
+                                                                </div>
+                                                          `)
                     }
                     else {
                         $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
@@ -144,13 +149,15 @@ $(document).ready(function () {
     $(".add_form input[name=img], .upd_form input[name=img]").change(function () { 
         var form = $(this).closest("form").attr("class")
         var files = this.files
+        $(`.${form} .img_prev`).empty()
 
-        if (files) {
-            var reader = new FileReader()
-            reader.onload = function () {
-                $(`.${form} img[name=img_prev]`).attr("src", reader.result)
-            }
-            reader.readAsDataURL(files[0])
+        for (var file of files) {
+            var img =   `
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <img src="${URL.createObjectURL(file)}">
+                            </div>
+                        `
+            $(`.${form} .img_prev`).append(img)
         }
     });
 })

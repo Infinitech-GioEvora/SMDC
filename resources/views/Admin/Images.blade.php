@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="row img_prev">
-                            <div class="col mb-3 d-flex justify-content-center align-items-center">
+                            <div class="col d-flex justify-content-center align-items-center">
                                 <img src="/img/no_image.jpg">
                             </div>
                         </div>

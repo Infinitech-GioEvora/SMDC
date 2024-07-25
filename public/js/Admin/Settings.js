@@ -41,20 +41,24 @@ $(document).ready(function () {
         })
     })
 
-    $('.cancel_btn').click(function (e) { 
+    $('.cancel_btn').click(function () { 
         get()
     });
 
     $(".upd_form input[name=logo]").change(function () { 
+        var form = $(this).closest("form").attr("class")
         var files = this.files
-        if (files) {
-            var reader = new FileReader()
-            reader.onload = function () {
-                $(".upd_form img[name=logo_prev]").attr("src", reader.result)
-            }
-            reader.readAsDataURL(files[0])
+        $(`.${form} .logo_prev`).empty()
+
+        for (var file of files) {
+            var img =   `
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <img src="${URL.createObjectURL(file)}">
+                            </div>
+                        `
+            $(`.${form} .logo_prev`).append(img)
         }
-    });
+    })
 })
 
 var ent = $(".ent").text().toLowerCase();
@@ -70,7 +74,12 @@ function get() {
 
                 for (var key of keys) {
                     if (key == "logo") {
-                        $(`.upd_form img[name=${key}_prev]`).attr("src", `/uploads/Logos/${record["logo"]}`)
+                        $(`.upd_form .${key}_prev`).empty()
+                        $(`.upd_form .${key}_prev`).append(`
+                                                                <div class="col d-flex justify-content-center align-items-center">
+                                                                    <img src="/uploads/Logos/${record[key]}">
+                                                                </div>
+                                                          `)
                     }
                     else {
                         $(`.upd_form input[name=${key}], .upd_form select[name=${key}], .upd_form textarea[name=${key}]`).val(record[key]);

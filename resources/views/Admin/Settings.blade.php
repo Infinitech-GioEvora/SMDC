@@ -17,8 +17,12 @@
                         <label for="" class="form-label">Logo</label>
                         <input type="file" class="form-control" placeholder="" name="logo"/>
                     </div>
-                    <div class="col-6 d-flex justify-content-center align-items-center">
-                        <img name="logo_prev" src="/img/no_image.jpg">
+                    <div class="col-6">
+                        <div class="row logo_prev">
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <img src="/img/no_image.jpg">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-3">

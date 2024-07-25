@@ -126,7 +126,7 @@ $(document).ready(function () {
                     if (key == "vid") {
                         $(`.upd_form .${key}_prev`).empty()
                         $(`.upd_form .${key}_prev`).append(`
-                                                                <div class="col mb-3 d-flex justify-content-center align-items-center">
+                                                                <div class="col d-flex justify-content-center align-items-center">
                                                                     <video controls>
                                                                         <source src="/uploads/Properties/Videos/${record[key]}"> 
                                                                     </video>
