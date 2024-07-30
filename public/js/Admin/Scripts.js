@@ -47,33 +47,6 @@ function display_charts(res) {
 
 
     var options = {
-        series: [{
-        data: Object.values(res.props_views)
-      }],
-        chart: {
-        type: 'bar',
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 4,
-          borderRadiusApplication: 'end',
-          horizontal: true,
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      xaxis: {
-        categories: Object.keys(res.props_views),
-      }
-    };
-
-    var chart = new ApexCharts(document.querySelector(".props_views"), options);
-    chart.render();
-
-
-
-    var options = {
       series: [{
         name: 'Amenities',
         data: res.props_af.amens,
@@ -101,4 +74,31 @@ function display_charts(res) {
 
     var chart = new ApexCharts(document.querySelector(".props_af"), options);
     chart.render();
+
+
+
+    var options = {
+        series: [{
+        data: Object.values(res.props_views)
+      }],
+        chart: {
+        type: 'bar',
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 4,
+          borderRadiusApplication: 'end',
+          horizontal: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: Object.keys(res.props_views),
+      },
+    };
+
+  var chart = new ApexCharts(document.querySelector(".props_views"), options);
+  chart.render();
 }
