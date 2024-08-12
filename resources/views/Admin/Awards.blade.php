@@ -1,164 +1,161 @@
-@extends('Sections.Admin.Layout')
+@extends('Layout.Admin.Layout')
 
 @section('title', 'Awards')
 
 @section('content')
     @php $ent = 'Award' @endphp
+    <!-- Data table -->
 
-    <div class="card rounded-0">
-        <div class="card-body ">
-            <div class="row">
-                <div class="col">
-                    <h2 class='ent'>{{ $ent }}s</h2>
+    <div class="card">
+        <div class="row pt-4 px-4 py-4">
+            <div class="col-md-6">
+                <h4 class="ent">{{ $ent }}s</h4>
+            </div>
+
+            <div class="col-md-6">
+                <div class="dt-buttons btn-group d-flex justify-content-end gap-2 ">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class='bx bx-export'></i> Export
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button type="button" class="btn dropdown-item copy_btn"><i class='bx bx-copy'></i> Copy</button></li>
+                            <li><button type="button" class="btn dropdown-item print_btn"><i class='bx bx-printer'></i> Print</button></li>
+                            <li><button type="button" class="btn dropdown-item excel_btn"><i class='bx bx-file'></i>Excel</button></li>
+                            <li><button type="button" class="btn dropdown-item pdf_btn"><i class='bx bxs-file-pdf'></i> Pdf</button></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target=".add_modal">
+                            <i class='bx bx-plus-circle'></i> Add {{ $ent }}
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="col d-flex justify-content-end">
-                <button class="btn btn-primary mb-3 p-2 me-3" data-bs-target=".add_modal" data-bs-toggle="modal">
-                    <i class="fa-solid fa-plus"></i>
-                    Add {{ $ent }}
-                </button>
-            </div>
+        </div>
+        
+        <div class="table-responsive tbl_div">
 
-            <div class="tbl_div">
-
-            </div>
         </div>
     </div>
 
-    <div class="modal fade add_modal" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content rounded-0">
+    <!-- Add Modal -->
+    <div class="modal fade add_modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-primary">
-                        <i class="fa-solid fa-user mr-1"></i>
-                        Add {{ $ent }}
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Add {{ $ent }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form class="add_form">
-
                         <div class="row mb-3">
                             <div class="col">
-                                <div class="form-floating">
-                                    <input type="text" name="name" class="form-control">
-                                    <label for="">Name</label>
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="" class="form-label">Image</label>
+                                <input type="file" class="form-control" placeholder="" name="img"/>
+                            </div>
+                            <div class="col-6">
+                                <div class="row img_prev">
+                                    <div class="col d-flex justify-content-center align-items-center">
+                                        <img src="/img/no_image.jpg">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
+                        <div class="row g-2">
                             <div class="col">
-                                <div class="form-floating">
-                                    <input type="file" name="img" class="form-control">
-                                    <label for="">Image</label>
-                                </div>
+                                <label for="" class="form-label">Type</label>
+                                <select class="form-select" name="type">
+                                    <option>Best Developer in the Philippines</option>
+                                    <option>International Awards</option>
+                                    <option>Philippine Awards</option>
+                                </select>
                             </div>
                         </div>
+                </div>
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
 
-                        <div class="row mb-3">
-                            <div class="col">
-                                <div class="form-floating">
-                                    <select class="form-select" name="type">
-                                        <option>Best Developer in the Philippines</option>
-                                        <option>International Awards</option>
-                                        <option>Philippine Awards</option>
-                                    </select>
-                                    <label for="">Type</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary px-3 me-2 fw-semibold">Save</button>
-                            <button type="button" class="btn btn-warning px-3 me-2 fw-semibold">Clear</button>
-                        </div>
-                        
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade upd_modal" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-0">
+    <!-- Update Modal -->
+    <div class="modal fade upd_modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-primary">
-                        <i class="fa-solid fa-user mr-1"></i>
-                        Edit {{ $ent }}
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Edit {{ $ent }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form class="upd_form">
-
                         <input type="hidden" name="id" class="form-control">
-
                         <div class="row mb-3">
                             <div class="col">
-                                <div class="form-floating">
-                                    <input type="text" name="name" class="form-control">
-                                    <label for="">Name</label>
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Name" name="name"/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="" class="form-label">Image</label>
+                                <input type="file" class="form-control" placeholder="" name="img"/>
+                            </div>
+                            <div class="col-6">
+                                <div class="row img_prev">
+                                    <div class="col d-flex justify-content-center align-items-center">
+                                        <img src="/img/no_image.jpg">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
+                        <div class="row g-2">
                             <div class="col">
-                                <div class="form-floating">
-                                    <input type="text" name="img" class="form-control">
-                                    <label for="">Image</label>
-                                </div>
+                                <label for="" class="form-label">Type</label>
+                                <select class="form-select" name="type">
+                                    <option>Best Developer in the Philippines</option>
+                                    <option>International Awards</option>
+                                    <option>Philippine Awards</option>
+                                </select>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col">
-                                <div class="form-floating">
-                                    <select class="form-select" name="type">
-                                        <option>Best Developer in the Philippines</option>
-                                        <option>International Awards</option>
-                                        <option>Philippine Awards</option>
-                                    </select>
-                                    <label for="">Type</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary px-3 me-2 fw-semibold">Update</button>
-                            <button type="button" class="btn btn-warning px-3 me-2 fw-semibold">Clear</button>
-                        </div>
-
+                </div>
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade del_modal" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-0">
+    <!-- Delete Modal -->
+    <div class="modal fade del_modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-primary">
-                        <i class="fa-solid fa-user mr-1"></i>
-                        Delete {{ $ent }}
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Delete {{ $ent }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-
-                    <h5 class="mb-3">Are you sure you want to delete this {{ $ent }}?</h5>
+                    <h5>Are you sure you want to delete this {{ $ent }}?</h5>
                     <form class="del_form">
-
                         <input type="hidden" name="id" class="form-control">
-                        
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary px-3 me-2 fw-semibold">Yes</button>
-                            <button type="button" class="btn btn-danger px-3 me-2 fw-semibold" data-bs-dismiss="modal">No</button>
-                        </div>
 
+                        <div class="d-flex justify-content-end align-items-center">
+                            <button type="submit" class="btn btn-primary me-1">Yes</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No</button>
+                        </div>
                     </form>
                 </div>
             </div>

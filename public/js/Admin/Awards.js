@@ -22,21 +22,20 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (res) {
-                alert(res.msg)
+                toastr.success(res.msg);
                 all()
                 $(`.add_form`).trigger("reset");
                 $(`.add_modal`).modal("hide");
             },
             error: function (res) {
-                console.log(res)
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".add_form input, .add_form select, .add_form textarea")
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`)
                             error_msg.insertAfter($(input));
                         }
@@ -61,7 +60,8 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (res) {
-                alert(res.msg)
+                console.log(res)
+                toastr.success(res.msg);
                 all();
                 $(`.upd_form`).trigger("reset");
                 $(`.upd_modal`).modal("hide");
@@ -71,11 +71,11 @@ $(document).ready(function () {
                 var errors = res.responseJSON.errors;
 
                 var inputs = $(".upd_form input, .upd_form select, .upd_form textarea");
-                for (input of inputs) {
+                for (var input of inputs) {
                     var name = $(input).attr("name");
 
                     if (name in errors) {
-                        for (error of errors[name]) {
+                        for (var error of errors[name]) {
                             var error_msg = $(`<span class='text-danger'>${error}</span>`);
                             error_msg.insertAfter($(input));
                         }
@@ -95,7 +95,7 @@ $(document).ready(function () {
             success: function (res) {
                 $(".del_form input[name=id]").val('');
 
-                alert(res.msg)
+                toastr.success(res.msg);
                 all();
                 $(`.del_modal`).modal("hide");
             },
@@ -106,7 +106,9 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".edit_btn", function () {
-        var id = $($(this).parents()[1]).data("id")
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
         $(".upd_form input[name=id]").val(id);
         $(`.upd_modal`).modal("show");
@@ -116,25 +118,47 @@ $(document).ready(function () {
             url: `/admin/${ent}/edit/${id}`,
             success: function (res) {
                 var record = res.record;
+                var keys = ["name", "img", "type",];
 
-                var keys = [
-                    "name",
-                    "img",
-                    "type",
-                ];
-
-                for (key of keys) {
-                    $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
+                for (var key of keys) {
+                    if (key == "img") {
+                        $(`.upd_form .${key}_prev`).empty()
+                        $(`.upd_form .${key}_prev`).append(`
+                                                                <div class="col d-flex justify-content-center align-items-center">
+                                                                    <img src="/uploads/Awards/${record[key]}">
+                                                                </div>
+                                                          `)
+                    }
+                    else {
+                        $(`.upd_form input[name=${key}], .upd_form select[name=${key}]`).val(record[key]);
+                    }
                 }
             },
         })
     })
 
     $(document).on("click", ".del_btn", function () {
-        var id = $($(this).parents()[1]).data("id");
+        var tr = $(this).closest('tr')
+        var id = ""
+        tr.data('id') == undefined ? id = tr.prev().data('id') : id = tr.data('id')
 
         $(".del_form input[name=id]").val(id);
         $(`.del_modal`).modal("show");
+    })
+
+    $(".add_form input[name=img], .upd_form input[name=img]").change(function () { 
+        var form = $(this).closest("form").attr("class")
+        var files = this.files
+        $(`.${form} .img_prev`).empty()
+
+        for (var file of files) {
+            var img =   `
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <img src="${URL.createObjectURL(file)}">
+                            </div>
+                        `
+            $(`.${form} .img_prev`).append(img)
+        }
     });
 })
 
@@ -149,13 +173,13 @@ function all() {
         success: function (res) {
             var records = res.records;
 
-            var tbl = $("<table>").addClass("w-100 overflow-auto records_tbl")
+            var tbl = $("<table>").addClass("table records_tbl")
 
             var thead = $("<thead>");
             var thr = $("<tr>");
 
             var cols = ["Name", "Image", "Type", "Action"];
-            for (col of cols) {
+            for (var col of cols) {
                 thr.append($("<th>").text(col))
             }
 
@@ -163,32 +187,73 @@ function all() {
             tbl.append(thead);
 
             var tbody = $("<tbody>");
+            var action =    
+                            `
+                                <div class="d-inline-block text-nowrap">                
+                                    <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end m-0">
+                                        <a href="javascript:;" class="dropdown-item edit_btn">Edit</a>
+                                        <a href="javascript:;" class="dropdown-item del_btn">Delete</a>
+                                    </div>
+                                </div>
+                            `
+
             if (records.length > 0) {
-                for (record of records) {
-                    var vals = [record.name, record.img, record.type];
-
+                for (var record of records) {
+                    var keys = ["name", "img", "type", "action"]
                     var tr = $("<tr>").data("id", record.id)
-                    for (val of vals) {
-                        tr.append($("<td>").html(val));
-                    }
 
-                    tr.append($("<td>").html(
-                    `
-                        <i class='fa fa-pen-to-square mr-2 edit_btn' title='Edit' style='cursor:pointer;'></i>
-                        <i class='fa-solid fa-trash del_btn' title='Delete' style='cursor:pointer;'></i>
-                    `))
+                    for (var key of keys) {
+                        var html = ""
+                        if (key == "action") {
+                            html = action
+                        }
+                        else if (key == "img") {
+                            html = `<img src='/uploads/Awards/${record[key]}'></img>`
+                        }
+                        else {
+                            html = record[key]
+                        }
+                        tr.append($("<td>").addClass('text-truncate').html(html))
+                    }
                     tbody.append(tr);
                 }
-            } else {
-                var tr = $("<tr>");
-                var td = $("<td>").addClass('text-center').attr({colspan: cols.length}).text("No results found.");
-
-                tr.append(td);
-                tbody.append(tr);
-            }
+            } 
 
             tbl.append(tbody);
             $(".tbl_div").append(tbl);
+
+            var data_table = $('.records_tbl').DataTable({
+                responsive: true,
+                columnDefs: [
+                    {responsivePriority: 1, targets: -1},
+                ],
+                inlineEditing: true,
+                buttons: [
+                    'print', 'copy', 'csv', 'pdf'
+                ],
+                "language": {
+                    "search": "Search: ",
+                    "searchPlaceholder": "Search here..."
+                }
+            })
+
+            $('.print_btn').on('click', function() {
+                data_table.button('.buttons-print').trigger();
+            });
+            $('.copy_btn').on('click', function() {
+                data_table.button('.buttons-copy').trigger();
+            });
+    
+            $('.excel_btn').on('click', function() {
+                data_table.button('.buttons-csv').trigger();
+            });
+    
+            $('.pdf_btn').on('click', function() {
+                data_table.button('.buttons-pdf').trigger();
+            });
         },
         error: function (res) {
             console.log(res);
