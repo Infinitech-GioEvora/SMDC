@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AwardController;
 |
 */
 
+
 Route::get('/', function () {
     return view('Homepage/index');
 });
